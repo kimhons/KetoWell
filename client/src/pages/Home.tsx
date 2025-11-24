@@ -20,6 +20,7 @@ import NewsletterForm from "@/components/NewsletterForm";
 import SEO from "@/components/SEO";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import DrKetoneChatDemo from "@/components/DrKetoneChatDemo";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
@@ -495,6 +496,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <FAQ />
 
         {/* Newsletter Section */}
         <section className="py-20 bg-gradient-hero">

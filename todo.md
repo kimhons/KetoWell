@@ -290,3 +290,23 @@
 - [x] Update footer links to point to legal pages (already present)
 - [x] Add SEO meta tags for legal pages
 - [x] Ensure mobile responsiveness
+
+## FAQ Section
+
+### FAQ Component
+- [x] Create FAQ accordion component using shadcn/ui
+- [x] Write comprehensive FAQ content (15 questions)
+- [x] Organize questions by category (Getting Started, Safety, App Features, Medical)
+- [x] Add smooth expand/collapse animations
+- [x] Ensure mobile responsiveness
+
+### FAQ Content Categories
+- [x] Getting Started: What is keto? How do I start? What can I eat? How long for results?
+- [x] Safety: Is keto safe for me? What about side effects? Do I need a doctor? Ketoacidosis concerns?
+- [x] App Features: How does Dr. Ketone work? What makes it different? What's included? Provider access?
+- [x] Medical: What if I have diabetes? What about medications? What are contraindications? Data security?
+
+### Integration
+- [x] Add FAQ section to homepage (before newsletter section)
+- [x] Add analytics tracking for FAQ interactions
+- [x] Test all accordion interactions
