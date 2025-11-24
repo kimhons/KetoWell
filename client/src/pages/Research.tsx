@@ -42,11 +42,11 @@ export default function Research() {
             <a href="/research" className="text-sm font-medium text-primary">
               Research
             </a>
-            <a href="/#safety" className="text-sm font-medium hover:text-primary transition-colors">
-              Safety
+            <a href="/pricing" className="text-sm font-medium hover:text-primary transition-colors">
+              Pricing
             </a>
-            <a href="/#how-it-works" className="text-sm font-medium hover:text-primary transition-colors">
-              How It Works
+            <a href="/for-providers" className="text-sm font-medium hover:text-primary transition-colors">
+              For Providers
             </a>
           </nav>
           
@@ -81,6 +81,166 @@ export default function Research() {
                   <p className="text-3xl font-bold text-primary">2024-2025</p>
                   <p className="text-muted-foreground">Latest Research</p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Evidence Strength Matrix */}
+        <section className="py-20 border-b">
+          <div className="container">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="mb-4">Evidence Strength Matrix</h2>
+                <p className="text-muted-foreground text-lg">
+                  Combined confidence levels from comprehensive research synthesis
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <Card className="p-6 bg-secondary/5 border-secondary/20">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold">Type 2 Diabetes Control</h3>
+                    <Badge className="bg-secondary/10 text-secondary border-secondary/30">
+                      VERY STRONG
+                    </Badge>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">HbA1c Reduction:</span>
+                      <span className="font-semibold">-0.29% (p&lt;0.001)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Meta-Analyses:</span>
+                      <span className="font-semibold">16/21 studies</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Source:</span>
+                      <span className="text-xs">Ghasemi 2024 (29 RCTs)</span>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6 bg-secondary/5 border-secondary/20">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold">Weight Loss</h3>
+                    <Badge className="bg-secondary/10 text-secondary border-secondary/30">
+                      STRONG
+                    </Badge>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Weight Reduction:</span>
+                      <span className="font-semibold">-2.59 kg vs control</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Long-term (5yr):</span>
+                      <span className="font-semibold">-12.9% sustained</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Source:</span>
+                      <span className="text-xs">Network meta-analysis</span>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6 bg-accent/5 border-accent/20">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold">Cardiovascular Health</h3>
+                    <Badge className="bg-accent/10 text-accent-foreground border-accent/30">
+                      MODERATE-NUANCED
+                    </Badge>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Triglycerides:</span>
+                      <span className="font-semibold">-15 mg/dL ↓</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">LDL Cholesterol:</span>
+                      <span className="font-semibold">+4.81 mg/dL ↑</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Source:</span>
+                      <span className="text-xs">AJCN 2025 (174 trials)</span>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6 bg-secondary/5 border-secondary/20">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold">Epilepsy</h3>
+                    <Badge className="bg-secondary/10 text-secondary border-secondary/30">
+                      VERY STRONG
+                    </Badge>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">≥50% Seizure Reduction:</span>
+                      <span className="font-semibold">62% of patients</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Seizure Freedom:</span>
+                      <span className="font-semibold">23% of patients</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Source:</span>
+                      <span className="text-xs">Mustafa 2024 (1000+ pts)</span>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6 bg-accent/5 border-accent/20">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold">Cancer Adjunctive Therapy</h3>
+                    <Badge className="bg-accent/10 text-accent-foreground border-accent/30">
+                      MODERATE-PROMISING
+                    </Badge>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">GBM Median OS:</span>
+                      <span className="font-semibold">29.4 months</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Safety:</span>
+                      <span className="font-semibold">100% (Phase 1)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Source:</span>
+                      <span className="text-xs">Amaral 2025 (GBM trial)</span>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6 bg-accent/5 border-accent/20">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold">Neurodegeneration</h3>
+                    <Badge className="bg-accent/10 text-accent-foreground border-accent/30">
+                      MODERATE-EMERGING
+                    </Badge>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Conditions:</span>
+                      <span className="font-semibold">AD, PD, MS</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Evidence:</span>
+                      <span className="font-semibold">Preliminary-Moderate</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Source:</span>
+                      <span className="text-xs">Multiple 2024-2025 studies</span>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+
+              <div className="mt-8 text-center">
+                <p className="text-sm text-muted-foreground">
+                  Evidence strength ratings combine findings from both Manus AI and Claude AI research synthesis
+                </p>
               </div>
             </div>
           </div>

@@ -57,3 +57,45 @@
 - [x] Add route to App.tsx for /research page
 - [x] Update homepage navigation links to point to research page
 - [x] Test research page functionality
+
+## Comprehensive Website Updates (Claude AI Recommendations)
+
+### Phase 1: Rebranding to KetoWell
+- [x] Update APP_TITLE in const.ts to "KetoWell"
+- [x] Update tagline to "Your AI-Native Partner in Ketogenic Health"
+- [x] Update all page titles and meta tags
+- [x] Update homepage hero section
+- [x] Update navigation branding
+- [x] Update footer branding
+
+### Phase 2: Evidence Strength Matrix
+- [x] Create evidence strength matrix component
+- [x] Add matrix to research page hero section
+- [x] Include combined research confidence levels
+- [x] Add visual indicators for strength levels
+
+### Phase 3: Pricing Page
+- [x] Create /pricing route
+- [x] Build pricing page component
+- [x] Add Free tier ($0/mo) with basic features
+- [x] Add Premium tier ($9.99/mo) with Dr. Ketone unlimited
+- [x] Add Clinical tier ($19.99/mo) with provider portal
+- [x] Add FAQ section
+- [x] Add comparison table
+
+### Phase 4: Interactive Dr. Ketone Chat Demo
+- [ ] Create chat demo component
+- [ ] Add to homepage hero section
+- [ ] Implement sample conversation flow
+- [ ] Add typing animations
+- [ ] Make it visually engaging
+
+### Phase 5: For Providers Page
+- [x] Create /for-providers route
+- [x] Build provider page component
+- [x] Add hero section for healthcare professionals
+- [x] Add provider portal features section
+- [x] Add patient monitoring capabilities
+- [x] Add evidence summaries for clinicians
+- [x] Add integration information
+- [x] Add contact/demo request form

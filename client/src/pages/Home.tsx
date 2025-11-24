@@ -15,7 +15,7 @@ import {
   Download,
   Star
 } from "lucide-react";
-import { APP_TITLE } from "@/const";
+import { APP_TITLE, APP_TAGLINE } from "@/const";
 
 export default function Home() {
   return (
@@ -37,11 +37,11 @@ export default function Home() {
             <a href="/research" className="text-sm font-medium hover:text-primary transition-colors">
               Research
             </a>
-            <a href="#safety" className="text-sm font-medium hover:text-primary transition-colors">
-              Safety
+            <a href="/pricing" className="text-sm font-medium hover:text-primary transition-colors">
+              Pricing
             </a>
-            <a href="#how-it-works" className="text-sm font-medium hover:text-primary transition-colors">
-              How It Works
+            <a href="/for-providers" className="text-sm font-medium hover:text-primary transition-colors">
+              For Providers
             </a>
           </nav>
           
@@ -62,7 +62,7 @@ export default function Home() {
                   Built on 2024-2025 Research
                 </Badge>
                 <h1 className="text-white">
-                  Your AI-Powered Partner in Ketogenic Health
+                  Transform Your Health with Evidence-Based Keto
                 </h1>
                 <p className="text-xl text-white/90 leading-relaxed">
                   The first ketogenic app that combines cutting-edge AI with rigorous medical safety—backed by the latest peer-reviewed research.
