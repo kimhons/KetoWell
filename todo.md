@@ -256,3 +256,37 @@
 - [x] Ensure banner appears on first visit
 - [x] Respect user's consent choice across sessions
 - [x] Add consent versioning for policy updates
+
+## Privacy Policy & Terms of Service Pages
+
+### Privacy Policy Content
+- [x] Draft introduction and scope
+- [x] Document data collection practices
+- [x] Explain cookie usage and types
+- [x] Detail HIPAA compliance measures
+- [x] Outline GDPR rights (access, deletion, portability)
+- [x] Outline CCPA rights (California residents)
+- [x] Explain data security measures
+- [x] Detail third-party services and data sharing
+- [x] Add contact information for privacy inquiries
+- [x] Include last updated date
+
+### Terms of Service Content
+- [x] Draft acceptance of terms
+- [x] Define service description and scope
+- [x] Add medical disclaimer and liability limitations
+- [x] Outline user responsibilities
+- [x] Detail prohibited uses
+- [x] Explain account termination conditions
+- [x] Add intellectual property rights
+- [x] Include dispute resolution and governing law
+- [x] Add limitation of liability
+- [x] Include last updated date
+
+### Page Implementation
+- [x] Create /privacy-policy page component
+- [x] Create /terms-of-service page component
+- [x] Add routes to App.tsx
+- [x] Update footer links to point to legal pages (already present)
+- [x] Add SEO meta tags for legal pages
+- [x] Ensure mobile responsiveness

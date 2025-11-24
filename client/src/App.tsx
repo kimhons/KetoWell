@@ -13,6 +13,8 @@ import Pricing from "./pages/Pricing";
 import ForProviders from "./pages/ForProviders";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 
 function Router() {
   return (
@@ -23,6 +25,8 @@ function Router() {
       <Route path={"/for-providers"} component={ForProviders} />
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/:slug"} component={BlogArticle} />
+      <Route path={"/privacy-policy"} component={PrivacyPolicy} />
+      <Route path={"/terms-of-service"} component={TermsOfService} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
