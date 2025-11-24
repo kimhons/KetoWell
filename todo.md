@@ -345,3 +345,28 @@
 - [x] Ensure tagline "Your AI-Native Partner in Ketogenic Health" is visible
 - [ ] Verify branding is consistent across all pages
 - [ ] Test visibility on mobile and desktop
+
+## Live Chat Widget Integration
+
+### Chat Widget Component
+- [x] Create LiveChatWidget component with toggle button
+- [x] Build chat interface with message display
+- [x] Add contact form for offline messages (email capture)
+- [x] Implement minimize/maximize functionality
+- [x] Add typing indicator animation
+- [x] Create welcome message on open
+- [x] Add mobile responsiveness
+
+### Integration
+- [x] Add chat widget to App.tsx for global availability
+- [x] Position widget in bottom-right corner
+- [x] Add analytics tracking for chat interactions
+- [x] Test chat widget on all pages
+- [ ] Document integration instructions for live chat services (Intercom, Crisp, Tawk.to)
+
+### Features
+- [x] Quick reply suggestions for common questions
+- [x] Email capture for offline messages
+- [x] Notification badge for new messages
+- [x] Smooth animations and transitions
+- [x] Auto-responses for common questions (pricing, safety, research, etc.)

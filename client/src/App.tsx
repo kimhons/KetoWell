@@ -6,6 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import AnalyticsProvider from "./components/AnalyticsProvider";
 import CookieConsent from "./components/CookieConsent";
+import LiveChatWidget from "./components/LiveChatWidget";
 import "./index.css";
 import Home from "./pages/Home";
 import Research from "./pages/Research";
@@ -50,6 +51,7 @@ function App() {
           <TooltipProvider>
             <Toaster />
             <Router />
+            <LiveChatWidget />
             <CookieConsent />
           </TooltipProvider>
         </AnalyticsProvider>
