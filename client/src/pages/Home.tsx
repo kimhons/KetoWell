@@ -16,6 +16,7 @@ import {
   Star
 } from "lucide-react";
 import { APP_TITLE, APP_TAGLINE } from "@/const";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export default function Home() {
   return (
@@ -514,6 +515,25 @@ export default function Home() {
                   Long-term optimization with advanced analytics, community support, and medical integration.
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter Section */}
+        <section className="py-20 bg-gradient-hero">
+          <div className="container">
+            <div className="max-w-3xl mx-auto text-center text-white">
+              <h2 className="text-white mb-4">Stay Updated with Latest Research</h2>
+              <p className="text-xl text-white/90 mb-8">
+                Get evidence-based insights on ketogenic health delivered to your inbox. 
+                No spam, just science.
+              </p>
+              <div className="max-w-md mx-auto">
+                <NewsletterForm variant="dark" />
+              </div>
+              <p className="text-sm text-white/70 mt-4">
+                Join 10,000+ readers. Unsubscribe anytime.
+              </p>
             </div>
           </div>
         </section>

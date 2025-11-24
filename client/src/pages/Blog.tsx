@@ -12,6 +12,7 @@ import {
 import { APP_TITLE } from "@/const";
 import { blogArticles } from "@/data/blogArticles";
 import { Link } from "wouter";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export default function Blog() {
   return (
@@ -155,15 +156,8 @@ export default function Blog() {
                 Get evidence-based insights on ketogenic health delivered to your inbox. 
                 No spam, just science.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="px-4 py-3 rounded-lg flex-1 text-foreground"
-                />
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90">
-                  Subscribe
-                </Button>
+              <div className="max-w-md mx-auto">
+                <NewsletterForm variant="dark" />
               </div>
               <p className="text-sm text-white/70 mt-4">
                 Join 10,000+ readers. Unsubscribe anytime.

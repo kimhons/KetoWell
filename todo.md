@@ -122,3 +122,26 @@
 - [x] Add related articles section
 - [x] Add author bios
 - [x] Add publication dates
+
+## Newsletter Subscription System
+
+### Newsletter Component
+- [x] Create reusable NewsletterForm component
+- [x] Add email validation
+- [x] Add loading states during submission
+- [x] Add success message display
+- [x] Add error handling
+- [x] Create API endpoint for form submission (documented for future implementation)
+
+### Integration
+- [x] Update homepage newsletter section with functional form
+- [x] Update blog page newsletter section with functional form
+- [ ] Update blog article page newsletter section with functional form
+- [x] Add toast notifications for success/error feedback
+
+### Email Service Setup
+- [x] Document integration instructions for Mailchimp
+- [x] Document integration instructions for ConvertKit
+- [x] Document integration instructions for custom API
+- [x] Document integration instructions for Formspree
+- [x] Test form submission flow
