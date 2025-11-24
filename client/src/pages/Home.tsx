@@ -21,8 +21,12 @@ import SEO from "@/components/SEO";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import DrKetoneChatDemo from "@/components/DrKetoneChatDemo";
 import FAQ from "@/components/FAQ";
+import WaitlistModal from "@/components/WaitlistModal";
+import { useState } from "react";
 
 export default function Home() {
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col">
       <SEO
@@ -58,9 +62,12 @@ export default function Home() {
             </a>
           </nav>
           
-          <Button className="bg-gradient-cta hover:opacity-90 transition-opacity">
+          <Button 
+            className="bg-gradient-cta hover:opacity-90 transition-opacity"
+            onClick={() => setWaitlistOpen(true)}
+          >
             <Download className="w-4 h-4 mr-2" />
-            Download App
+            Join Waitlist
           </Button>
         </div>
       </header>
@@ -82,13 +89,22 @@ export default function Home() {
                   Your AI-Native Partner in Ketogenic Health. The first ketogenic app that combines cutting-edge AI with rigorous medical safety—backed by the latest peer-reviewed research.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="bg-white text-primary hover:bg-white/90">
+                  <Button 
+                    size="lg" 
+                    className="bg-white text-primary hover:bg-white/90"
+                    onClick={() => setWaitlistOpen(true)}
+                  >
                     <Download className="w-5 h-5 mr-2" />
-                    Download for iOS
+                    Join Waitlist
                   </Button>
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="border-white text-white hover:bg-white/10"
+                    onClick={() => setWaitlistOpen(true)}
+                  >
                     <Download className="w-5 h-5 mr-2" />
-                    Download for Android
+                    Get Early Access
                   </Button>
                 </div>
                 <div className="flex items-center gap-6 text-white/80 text-sm">
@@ -526,22 +542,30 @@ export default function Home() {
             <div className="max-w-4xl mx-auto text-center">
               <h2>Start Your Ketogenic Journey Today</h2>
               <p className="text-muted-foreground mt-4 mb-8">
-                Download now and get personalized guidance from Dr. Ketone—your AI-powered health partner.
+                Join the waitlist and be the first to experience Dr. Ketone—your AI-powered health partner. Expected launch: Q2 2025.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-gradient-cta hover:opacity-90">
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-cta hover:opacity-90"
+                  onClick={() => setWaitlistOpen(true)}
+                >
                   <Download className="w-5 h-5 mr-2" />
-                  Download for iOS
+                  Join Waitlist
                 </Button>
-                <Button size="lg" variant="outline">
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  onClick={() => setWaitlistOpen(true)}
+                >
                   <Download className="w-5 h-5 mr-2" />
-                  Download for Android
+                  Get Early Access
                 </Button>
               </div>
               
               <p className="text-sm text-muted-foreground mt-6">
-                Free to download. Premium features available.
+                Free to join. Be notified at launch.
               </p>
             </div>
           </div>
@@ -602,6 +626,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Waitlist Modal */}
+      <WaitlistModal open={waitlistOpen} onOpenChange={setWaitlistOpen} />
     </div>
   );
 }

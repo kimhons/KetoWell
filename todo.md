@@ -370,3 +370,28 @@
 - [x] Notification badge for new messages
 - [x] Smooth animations and transitions
 - [x] Auto-responses for common questions (pricing, safety, research, etc.)
+
+## Waitlist Signup Modal
+
+### Modal Component
+- [x] Create WaitlistModal component with dialog UI
+- [x] Add email input with validation
+- [x] Add platform selection (iOS, Android, Both)
+- [x] Display expected launch date (Q2 2025)
+- [x] Add success state with confirmation message
+- [x] Implement loading state during submission
+- [x] Add error handling and toast notifications
+
+### Integration
+- [x] Replace "Download for iOS" button with waitlist trigger
+- [x] Replace "Download for Android" button with waitlist trigger
+- [x] Update all CTA buttons on homepage to trigger waitlist
+- [x] Add analytics tracking for waitlist signups
+- [x] Track platform preferences (iOS vs Android)
+
+### Features
+- [x] Email validation before submission
+- [x] Success message with next steps
+- [x] Option to join newsletter simultaneously
+- [ ] Display waitlist position or total signups (future enhancement)
+- [x] Mobile responsive design
