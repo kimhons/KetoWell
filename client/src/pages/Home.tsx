@@ -19,6 +19,7 @@ import { APP_TITLE, APP_TAGLINE } from "@/const";
 import NewsletterForm from "@/components/NewsletterForm";
 import SEO from "@/components/SEO";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import DrKetoneChatDemo from "@/components/DrKetoneChatDemo";
 
 export default function Home() {
   return (
@@ -101,42 +102,8 @@ export default function Home() {
                 </div>
               </div>
               
-              <div className="relative animate-slide-up">
-                <div className="relative z-10 bg-white rounded-3xl shadow-strong p-8">
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-hero flex items-center justify-center">
-                        <Brain className="w-5 h-5 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="font-semibold text-foreground">Dr. Ketone</p>
-                        <p className="text-sm text-muted-foreground">Your AI Health Assistant</p>
-                      </div>
-                    </div>
-                    <div className="bg-muted rounded-2xl p-4 space-y-2">
-                      <p className="text-sm">
-                        Good morning! I noticed your sodium intake has been low for 3 days. Let's boost it today to prevent keto flu symptoms.
-                      </p>
-                      <p className="text-sm font-medium text-primary">
-                        Add 1 tsp salt to your meals today →
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-3 gap-3">
-                      <div className="bg-primary/10 rounded-xl p-3 text-center">
-                        <p className="text-2xl font-bold text-primary">18g</p>
-                        <p className="text-xs text-muted-foreground">Net Carbs</p>
-                      </div>
-                      <div className="bg-secondary/10 rounded-xl p-3 text-center">
-                        <p className="text-2xl font-bold text-secondary">72g</p>
-                        <p className="text-xs text-muted-foreground">Fat</p>
-                      </div>
-                      <div className="bg-accent/10 rounded-xl p-3 text-center">
-                        <p className="text-2xl font-bold text-accent">55g</p>
-                        <p className="text-xs text-muted-foreground">Protein</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="relative animate-slide-up flex justify-center">
+                <DrKetoneChatDemo />
                 <div className="absolute inset-0 bg-gradient-cta blur-3xl opacity-20 -z-10"></div>
               </div>
             </div>

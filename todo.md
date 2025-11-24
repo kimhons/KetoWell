@@ -205,3 +205,26 @@
 - [x] Document GA4 setup instructions (GA4_SETUP.md)
 - [ ] User must configure GA4 Measurement ID in env
 - [ ] User must verify events in GA4 dashboard after deployment
+
+## Dr. Ketone Interactive Chat Demo
+
+### Chat Component
+- [x] Create ChatDemo component with message interface
+- [x] Implement typing animation effect
+- [x] Add message bubbles (user vs assistant)
+- [x] Create conversation script with meal logging example
+- [x] Create conversation script with symptom assessment
+- [x] Add auto-play functionality with delays
+- [x] Add restart/replay button
+
+### Integration
+- [x] Replace static chat mockup in homepage hero
+- [x] Add smooth animations and transitions
+- [x] Ensure mobile responsiveness
+- [x] Test chat flow and timing
+
+### Content
+- [x] Write realistic meal logging conversation
+- [x] Write symptom assessment conversation (electrolyte guidance)
+- [x] Write personalized guidance examples
+- [x] Add Dr. Ketone personality traits (warm, evidence-based)
