@@ -55,3 +55,19 @@ export const newsletterSubscriptions = mysqlTable("newsletter_subscriptions", {
 
 export type NewsletterSubscription = typeof newsletterSubscriptions.$inferSelect;
 export type InsertNewsletterSubscription = typeof newsletterSubscriptions.$inferInsert;
+
+/**
+ * Email sends tracking table for drip campaign
+ */
+export const emailSends = mysqlTable("email_sends", {
+  id: int("id").autoincrement().primaryKey(),
+  waitlistSignupId: int("waitlist_signup_id").notNull(),
+  emailType: mysqlEnum("email_type", ["confirmation", "day_1", "day_3", "day_7"]).notNull(),
+  sentAt: timestamp("sent_at").defaultNow().notNull(),
+  status: mysqlEnum("status", ["sent", "failed", "bounced"]).notNull().default("sent"),
+  resendMessageId: varchar("resend_message_id", { length: 100 }),
+  errorMessage: text("error_message"),
+});
+
+export type EmailSend = typeof emailSends.$inferSelect;
+export type InsertEmailSend = typeof emailSends.$inferInsert;

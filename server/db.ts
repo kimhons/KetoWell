@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { eq, and, isNotNull, lte } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, waitlistSignups, InsertWaitlistSignup, newsletterSubscriptions, InsertNewsletterSubscription } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -230,4 +230,117 @@ export async function getNewsletterSubscriptionByEmail(email: string) {
     .limit(1);
 
   return result.length > 0 ? result[0] : undefined;
+}
+
+/**
+ * ========================================
+ * EMAIL SENDS (DRIP CAMPAIGN) HELPERS
+ * ========================================
+ */
+
+import { emailSends, InsertEmailSend } from "../drizzle/schema";
+
+/**
+ * Record that an email was sent
+ */
+export async function createEmailSend(emailSend: InsertEmailSend) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    const result = await db.insert(emailSends).values(emailSend);
+    return result;
+  } catch (error: any) {
+    console.error("[Database] Failed to create email send record:", error);
+    throw error;
+  }
+}
+
+/**
+ * Check if a specific email type has been sent to a waitlist signup
+ */
+export async function hasEmailBeenSent(
+  waitlistSignupId: number,
+  emailType: "confirmation" | "day_1" | "day_3" | "day_7"
+): Promise<boolean> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    const results = await db
+      .select()
+      .from(emailSends)
+      .where(
+        and(
+          eq(emailSends.waitlistSignupId, waitlistSignupId),
+          eq(emailSends.emailType, emailType)
+        )
+      )
+      .limit(1);
+
+    return results.length > 0;
+  } catch (error: any) {
+    console.error("[Database] Failed to check email send status:", error);
+    return false;
+  }
+}
+
+/**
+ * Get waitlist members who are due for a specific drip email
+ * Returns members who:
+ * 1. Have confirmed their email
+ * 2. Haven't received the specified email yet
+ * 3. Confirmed at least X days ago (based on emailType)
+ */
+export async function getWaitlistMembersForDripEmail(
+  emailType: "day_1" | "day_3" | "day_7"
+): Promise<Array<{ id: number; email: string; confirmedAt: Date }>> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  // Determine how many days ago they should have confirmed
+  const daysAgo = emailType === "day_1" ? 1 : emailType === "day_3" ? 3 : 7;
+  const targetDate = new Date();
+  targetDate.setDate(targetDate.getDate() - daysAgo);
+
+  try {
+    // Get all confirmed waitlist signups
+    const confirmedSignups = await db
+      .select({
+        id: waitlistSignups.id,
+        email: waitlistSignups.email,
+        confirmedAt: waitlistSignups.confirmedAt,
+      })
+      .from(waitlistSignups)
+      .where(
+        and(
+          isNotNull(waitlistSignups.confirmedAt),
+          lte(waitlistSignups.confirmedAt, targetDate)
+        )
+      );
+
+    // Filter out those who have already received this email
+    const eligibleMembers = [];
+    for (const signup of confirmedSignups) {
+      const alreadySent = await hasEmailBeenSent(signup.id, emailType);
+      if (!alreadySent && signup.confirmedAt) {
+        eligibleMembers.push({
+          id: signup.id,
+          email: signup.email,
+          confirmedAt: signup.confirmedAt,
+        });
+      }
+    }
+
+    return eligibleMembers;
+  } catch (error: any) {
+    console.error("[Database] Failed to get waitlist members for drip email:", error);
+    throw error;
+  }
 }

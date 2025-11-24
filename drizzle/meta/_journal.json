@@ -15,6 +15,13 @@
       "when": 1764022001871,
       "tag": "0001_groovy_cannonball",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1764027498979,
+      "tag": "0002_greedy_mandarin",
+      "breakpoints": true
     }
   ]
 }

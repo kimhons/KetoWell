@@ -498,3 +498,64 @@
 - [x] Test already-confirmed email handling
 - [x] Test invalid token rejection
 - [x] All 16 tests passing (12 original + 4 email confirmation)
+
+## Welcome Email Series (Drip Campaign)
+
+### Strategy & Planning
+- [x] Define email series schedule (Day 1, Day 3, Day 7)
+- [x] Plan content themes for each email
+- [x] Design database schema for email tracking
+- [x] Create email_sends table to track sent emails
+
+### Database Schema
+- [x] Add email_sends table with fields:
+  - id (primary key)
+  - waitlist_signup_id (foreign key)
+  - email_type (confirmation, day_1, day_3, day_7)
+  - sent_at (timestamp)
+  - status (sent, failed, bounced)
+  - resend_message_id (for tracking)
+  - error_message (for failed sends)
+- [x] Run database migration (pnpm db:push)
+
+### Email Templates
+- [x] Create Day 1 email: "The Science Behind Ketogenic Health"
+  - Metabolic benefits overview (stable energy, mental clarity)
+  - How ketosis works (fat burning, ketones)
+  - Research highlight from 2024 meta-analysis
+  - What to expect from KetoWell
+- [x] Create Day 3 email: "Meet Dr. Ketone: Your AI Health Partner"
+  - Dr. Ketone capabilities preview
+  - Safety-first approach (contraindication screening)
+  - Proactive health monitoring
+  - Real example conversation
+- [x] Create Day 7 email: "Research Highlights & Launch Updates"
+  - Key research findings (metabolic, cardiovascular, neurological)
+  - Clinical evidence summary with citations
+  - Launch timeline (Q1 beta, Q2 launch)
+  - Waitlist member benefits
+
+### Email Scheduling System
+- [x] Create email series helper functions (sendDay1Email, sendDay3Email, sendDay7Email)
+- [x] Implement getWaitlistMembersForDripEmail query
+- [x] Create createEmailSend helper with tracking
+- [x] Create hasEmailBeenSent helper for duplicate checking
+- [x] Add email send logging to database
+- [x] Handle duplicate send prevention
+
+### Scheduled Job
+- [x] Create cron job script (server/jobs/send-drip-emails.ts)
+- [x] Check for users due for Day 1, Day 3, Day 7 emails
+- [x] Send emails in batches with rate limiting (100ms between sends)
+- [x] Log results and handle failures
+- [x] Record failed sends in database with error messages
+- [x] Add npm script: pnpm job:drip-emails
+
+### Testing
+- [x] Write vitest tests for drip email logic (10 tests)
+- [x] Test email tracking (2 tests)
+- [x] Test email scheduling calculations (5 tests)
+- [x] Test duplicate prevention
+- [x] Verify email templates send correctly (3 tests)
+- [x] Test that unconfirmed members are excluded
+- [x] All 28 tests passing (16 router + 10 drip email + 2 other)
