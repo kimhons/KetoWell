@@ -228,3 +228,31 @@
 - [x] Write symptom assessment conversation (electrolyte guidance)
 - [x] Write personalized guidance examples
 - [x] Add Dr. Ketone personality traits (warm, evidence-based)
+
+## GDPR Cookie Consent Banner
+
+### Consent Banner Component
+- [x] Create CookieConsent component with banner UI
+- [x] Add accept/decline buttons
+- [x] Add "Manage Preferences" option
+- [x] Create consent storage in localStorage
+- [x] Add privacy policy link
+- [x] Ensure mobile responsiveness
+
+### Consent Management
+- [x] Create useConsent hook for consent state
+- [x] Implement consent categories (necessary, analytics, marketing)
+- [x] Add consent revocation functionality (resetConsent)
+- [x] Create preferences modal for granular control
+
+### GA4 Integration
+- [x] Modify AnalyticsProvider to check consent before initialization
+- [x] Only load GA4 script after user accepts analytics cookies
+- [x] Add consent checking for page view tracking
+- [x] Test that GA4 doesn't load without consent
+
+### Compliance
+- [x] Add clear cookie policy explanation
+- [x] Ensure banner appears on first visit
+- [x] Respect user's consent choice across sessions
+- [x] Add consent versioning for policy updates
