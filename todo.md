@@ -460,3 +460,41 @@
 - [x] Write vitest tests for newsletter API (5 tests)
 - [x] Write integration tests for waitlist with newsletter opt-in (2 tests)
 - [x] Fix duplicate entry error handling (all 12 tests passing)
+
+## Resend Email Service Integration
+
+### Setup
+- [x] Install Resend SDK package
+- [x] Request RESEND_API_KEY from user via webdev_request_secrets
+- [x] Test API key with simple email send
+
+### Email Templates
+- [x] Create waitlist confirmation email template
+- [x] Add KetoWell branding to email
+- [x] Include confirmation link with token
+- [x] Add features preview section
+- [x] Make template mobile-responsive
+
+### Email Helper Functions
+- [x] Create sendWaitlistConfirmationEmail helper
+- [x] Add error handling for email failures
+- [x] Log email send attempts
+- [x] Handle rate limiting gracefully
+- [x] Create testResendConnection helper for API validation
+
+### Integration
+- [x] Update waitlist.signup mutation to send confirmation email
+- [x] Add email confirmation endpoint (waitlist.confirm mutation)
+- [x] Update confirmWaitlistSignup to mark as confirmed
+- [x] Handle email send failures without blocking signup
+- [x] Create WaitlistConfirm page component
+- [x] Add /waitlist/confirm/:token route to App.tsx
+
+### Testing
+- [x] Write vitest test for email helper function (testResendConnection)
+- [x] Test confirmation email flow (4 new tests)
+- [x] Verify email template renders correctly
+- [x] Test error handling when confirmation fails
+- [x] Test already-confirmed email handling
+- [x] Test invalid token rejection
+- [x] All 16 tests passing (12 original + 4 email confirmation)

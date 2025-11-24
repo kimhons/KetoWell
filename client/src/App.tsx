@@ -16,6 +16,7 @@ import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import WaitlistConfirm from "./pages/WaitlistConfirm";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -26,9 +27,10 @@ function Router() {
       <Route path={"/pricing"} component={Pricing} />
       <Route path={"/for-providers"} component={ForProviders} />
       <Route path={"/blog"} component={Blog} />
-      <Route path={"/blog/:slug"} component={BlogArticle} />
-      <Route path={"/privacy-policy"} component={PrivacyPolicy} />
-      <Route path={"/terms-of-service"} component={TermsOfService} />
+      <Route path="/blog/:slug" component={BlogArticle} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-of-service" component={TermsOfService} />
+      <Route path="/waitlist/confirm/:token" component={WaitlistConfirm} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

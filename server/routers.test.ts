@@ -189,3 +189,81 @@ describe("Integration: Waitlist with Newsletter Opt-in", () => {
     expect(newsletterResult.success).toBe(true);
   });
 });
+
+describe("Waitlist Email Confirmation", () => {
+  it("should send confirmation email when user signs up", async () => {
+    const testEmail = `email-test-${Date.now()}@example.com`;
+    
+    const result = await caller.waitlist.signup({
+      email: testEmail,
+      platform: "ios",
+      newsletterOptin: false,
+    });
+
+    expect(result.success).toBe(true);
+    expect(result.emailSent).toBe(true);
+    expect(result.message).toContain("Check your email");
+  });
+
+  it("should confirm email with valid token", async () => {
+    const testEmail = `confirm-${Date.now()}@example.com`;
+    
+    // First, sign up to get a token
+    const signupResult = await caller.waitlist.signup({
+      email: testEmail,
+      platform: "android",
+      newsletterOptin: false,
+    });
+
+    expect(signupResult.success).toBe(true);
+
+    // Get the signup from database to retrieve token
+    const { getWaitlistSignupByEmail } = await import("./db");
+    const signup = await getWaitlistSignupByEmail(testEmail);
+    
+    expect(signup).toBeDefined();
+    expect(signup?.confirmationToken).toBeDefined();
+
+    // Confirm the email
+    const confirmResult = await caller.waitlist.confirm({
+      token: signup!.confirmationToken!,
+    });
+
+    expect(confirmResult.success).toBe(true);
+    expect(confirmResult.alreadyConfirmed).toBe(false);
+    expect(confirmResult.message).toContain("confirmed");
+  });
+
+  it("should handle already confirmed emails", async () => {
+    const testEmail = `already-confirmed-${Date.now()}@example.com`;
+    
+    // Sign up
+    await caller.waitlist.signup({
+      email: testEmail,
+      platform: "both",
+      newsletterOptin: false,
+    });
+
+    // Get token
+    const { getWaitlistSignupByEmail } = await import("./db");
+    const signup = await getWaitlistSignupByEmail(testEmail);
+    const token = signup!.confirmationToken!;
+
+    // Confirm first time
+    await caller.waitlist.confirm({ token });
+
+    // Confirm second time
+    const secondConfirm = await caller.waitlist.confirm({ token });
+
+    expect(secondConfirm.success).toBe(true);
+    expect(secondConfirm.alreadyConfirmed).toBe(true);
+  });
+
+  it("should reject invalid confirmation token", async () => {
+    await expect(
+      caller.waitlist.confirm({
+        token: "invalid-token-12345",
+      })
+    ).rejects.toThrow("Invalid or expired");
+  });
+});

@@ -3,8 +3,9 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
-import { createWaitlistSignup, getWaitlistCount, createNewsletterSubscription } from "./db";
+import { createWaitlistSignup, getWaitlistCount, createNewsletterSubscription, confirmWaitlistSignup, getWaitlistSignupByToken } from "./db";
 import crypto from "crypto";
+import { sendWaitlistConfirmationEmail } from "./email";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -57,13 +58,22 @@ export const appRouter = router({
             }
           }
 
-          // TODO: Send confirmation email here
-          // You can use a service like SendGrid, Mailgun, or AWS SES
-          // For now, we'll just return success
+          // Send confirmation email
+          const emailResult = await sendWaitlistConfirmationEmail({
+            email: input.email,
+            confirmationToken,
+            platform: input.platform,
+          });
+
+          if (!emailResult.success) {
+            console.error("Failed to send confirmation email:", emailResult.error);
+            // Don't fail the signup if email fails - user is still on waitlist
+          }
 
           return {
             success: true,
-            message: "Successfully joined the waitlist!",
+            message: "Successfully joined the waitlist! Check your email to confirm.",
+            emailSent: emailResult.success,
           };
         } catch (error: any) {
           console.error("Waitlist signup error:", error);
@@ -77,6 +87,43 @@ export const appRouter = router({
         totalSignups: count,
       };
     }),
+
+    confirm: publicProcedure
+      .input(
+        z.object({
+          token: z.string(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        try {
+          // Find signup by token
+          const signup = await getWaitlistSignupByToken(input.token);
+          
+          if (!signup) {
+            throw new Error("Invalid or expired confirmation token");
+          }
+
+          if (signup.confirmedAt) {
+            return {
+              success: true,
+              message: "Email already confirmed!",
+              alreadyConfirmed: true,
+            };
+          }
+
+          // Mark as confirmed
+          await confirmWaitlistSignup(input.token);
+
+          return {
+            success: true,
+            message: "Email confirmed! You're all set.",
+            alreadyConfirmed: false,
+          };
+        } catch (error: any) {
+          console.error("Waitlist confirmation error:", error);
+          throw new Error(error.message || "Failed to confirm email");
+        }
+      }),
   }),
 
   newsletter: router({
