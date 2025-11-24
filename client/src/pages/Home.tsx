@@ -75,10 +75,11 @@ export default function Home() {
                   Built on 2024-2025 Research
                 </Badge>
                 <h1 className="text-white">
-                  Transform Your Health with Evidence-Based Keto
+                  <span className="block text-5xl md:text-6xl lg:text-7xl font-bold mb-4">KetoWell</span>
+                  <span className="block text-3xl md:text-4xl lg:text-5xl">Transform Your Health with Evidence-Based Keto</span>
                 </h1>
                 <p className="text-xl text-white/90 leading-relaxed">
-                  The first ketogenic app that combines cutting-edge AI with rigorous medical safety—backed by the latest peer-reviewed research.
+                  Your AI-Native Partner in Ketogenic Health. The first ketogenic app that combines cutting-edge AI with rigorous medical safety—backed by the latest peer-reviewed research.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button size="lg" className="bg-white text-primary hover:bg-white/90">

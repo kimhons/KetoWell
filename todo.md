@@ -338,3 +338,10 @@
 - [x] Update feature cards with custom icons
 - [x] Update APP_LOGO constant with Dr. Ketone character
 - [ ] Test all image loading and responsiveness
+
+## KetoWell Branding Visibility Fix
+
+- [x] Add "KetoWell" name prominently to homepage hero section
+- [x] Ensure tagline "Your AI-Native Partner in Ketogenic Health" is visible
+- [ ] Verify branding is consistent across all pages
+- [ ] Test visibility on mobile and desktop
