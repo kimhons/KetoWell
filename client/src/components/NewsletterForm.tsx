@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { trackNewsletterSignup } from "@/lib/analytics";
+import { trpc } from "@/lib/trpc";
 
 interface NewsletterFormProps {
   variant?: "light" | "dark";
@@ -11,7 +12,18 @@ interface NewsletterFormProps {
 
 export default function NewsletterForm({ variant = "light", className = "" }: NewsletterFormProps) {
   const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const newsletterMutation = trpc.newsletter.subscribe.useMutation({
+    onSuccess: (data) => {
+      trackNewsletterSignup(window.location.pathname);
+      toast.success(data.message || "Thank you for subscribing!");
+      setEmail("");
+    },
+    onError: (error) => {
+      const errorMessage = error.message || "Something went wrong. Please try again.";
+      toast.error(errorMessage);
+    },
+  });
 
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -31,53 +43,14 @@ export default function NewsletterForm({ variant = "light", className = "" }: Ne
       return;
     }
 
-    setIsSubmitting(true);
+    newsletterMutation.mutate({
+      email,
+      source: "website",
+    });
 
-    try {
-      // For now, we'll simulate a successful submission
-      // In production, this would call your email marketing service API
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // Example integration endpoints (commented out):
-      
-      // Mailchimp:
-      // const response = await fetch('/api/subscribe', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email })
-      // });
-
-      // ConvertKit:
-      // const response = await fetch('https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ 
-      //     api_key: 'YOUR_API_KEY',
-      //     email: email 
-      //   })
-      // });
-
-      // Custom API:
-      // const response = await fetch('/api/newsletter/subscribe', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email })
-      // });
-
-      toast.success("Successfully subscribed! Check your inbox for confirmation.", {
-        duration: 5000,
-      });
-      
-      // Track newsletter signup
-      trackNewsletterSignup(window.location.pathname);
-      
-      setEmail("");
-    } catch (error) {
-      console.error("Newsletter subscription error:", error);
-      toast.error("Something went wrong. Please try again later.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Note: The tRPC mutation handles the API call, success, and error states
+    // For external email service integration (Mailchimp, ConvertKit, etc.),
+    // see NEWSLETTER_INTEGRATION.md for detailed instructions
   };
 
   const isDark = variant === "dark";
@@ -89,7 +62,7 @@ export default function NewsletterForm({ variant = "light", className = "" }: Ne
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Enter your email"
-        disabled={isSubmitting}
+        disabled={newsletterMutation.isPending}
         className={`px-4 py-3 rounded-lg flex-1 ${
           isDark
             ? "bg-white/10 text-white placeholder:text-white/60 border border-white/20 focus:border-white/40"
@@ -99,14 +72,14 @@ export default function NewsletterForm({ variant = "light", className = "" }: Ne
       <Button
         type="submit"
         size="lg"
-        disabled={isSubmitting}
+        disabled={newsletterMutation.isPending}
         className={
           isDark
             ? "bg-white text-primary hover:bg-white/90"
             : "bg-gradient-cta hover:opacity-90"
         }
       >
-        {isSubmitting ? (
+        {newsletterMutation.isPending ? (
           <>
             <Loader2 className="w-4 h-4 mr-2 animate-spin" />
             Subscribing...

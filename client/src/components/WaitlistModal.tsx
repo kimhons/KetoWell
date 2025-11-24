@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { trpc } from "@/lib/trpc";
 import {
   Dialog,
   DialogContent,
@@ -24,32 +25,19 @@ export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps
   const [email, setEmail] = useState("");
   const [platform, setPlatform] = useState<"ios" | "android" | "both">("both");
   const [joinNewsletter, setJoinNewsletter] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!email || !email.includes("@")) {
-      toast.error("Please enter a valid email address");
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
+  const waitlistMutation = trpc.waitlist.signup.useMutation({
+    onSuccess: (data) => {
       // Track waitlist signup
       trackCustomEvent("waitlist_signup", {
         platform,
         newsletter: joinNewsletter,
       });
 
-      // Simulate API call (in production, this would submit to your backend)
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
       // Show success state
       setIsSuccess(true);
-      toast.success("You're on the list! We'll notify you at launch.");
+      toast.success(data.message || "You're on the list! We'll notify you at launch.");
 
       // Reset form after delay
       setTimeout(() => {
@@ -59,11 +47,26 @@ export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps
         setJoinNewsletter(true);
         onOpenChange(false);
       }, 3000);
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
+    },
+    onError: (error) => {
+      const errorMessage = error.message || "Something went wrong. Please try again.";
+      toast.error(errorMessage);
+    },
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email || !email.includes("@")) {
+      toast.error("Please enter a valid email address");
+      return;
     }
+
+    waitlistMutation.mutate({
+      email,
+      platform,
+      newsletterOptin: joinNewsletter,
+    });
   };
 
   return (
@@ -143,9 +146,9 @@ export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps
               <Button
                 type="submit"
                 className="w-full"
-                disabled={isSubmitting}
+                disabled={waitlistMutation.isPending}
               >
-                {isSubmitting ? (
+                {waitlistMutation.isPending ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                     Joining Waitlist...

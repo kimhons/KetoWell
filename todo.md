@@ -395,3 +395,68 @@
 - [x] Option to join newsletter simultaneously
 - [ ] Display waitlist position or total signups (future enhancement)
 - [x] Mobile responsive design
+
+## Waitlist API Backend
+
+### Project Upgrade
+- [x] Upgrade project with web-db-user feature (server + database + auth)
+- [x] Set up database connection
+- [ ] Configure email service integration (documented for future)
+
+### Database Schema
+- [x] Create waitlist_signups table with fields:
+  - id (primary key)
+  - email (unique, required)
+  - platform (ios/android/both)
+  - newsletter_optin (boolean)
+  - created_at (timestamp)
+  - confirmed_at (timestamp, nullable)
+  - confirmation_token (unique)
+- [x] Create newsletter_subscriptions table with fields:
+  - id (primary key)
+  - email (unique, required)
+  - source (varchar)
+  - subscribed_at (timestamp)
+  - unsubscribed_at (timestamp, nullable)
+  - unsubscribe_token (unique)
+
+### API Endpoints (tRPC)
+- [x] Create waitlist.signup mutation
+- [x] Create waitlist.stats query
+- [x] Create newsletter.subscribe mutation
+- [x] Implement email validation with Zod
+- [x] Check for duplicate signups (unique constraint)
+- [x] Store signup in database with Drizzle ORM
+- [x] Generate confirmation token
+- [x] Return success response
+- [x] Handle duplicate entry errors properly (MySQL & SQLite)
+
+### Database Helper Functions
+- [x] Create createWaitlistSignup helper
+- [x] Create getWaitlistSignupByEmail helper
+- [x] Create getWaitlistSignupByToken helper
+- [x] Create confirmWaitlistSignup helper
+- [x] Create getWaitlistCount helper
+- [x] Create createNewsletterSubscription helper
+- [x] Create getNewsletterSubscriptionByEmail helper
+- [x] Fix duplicate entry error handling for Drizzle-wrapped errors
+
+### Email Confirmation
+- [ ] Set up email service (Resend or similar) - documented for future
+- [ ] Create confirmation email template
+- [ ] Send confirmation email after signup
+- [ ] Create GET /api/waitlist/confirm/:token endpoint
+- [ ] Update confirmed_at timestamp on confirmation
+
+### Frontend Integration
+- [x] Update WaitlistModal to call real tRPC endpoint
+- [x] Update NewsletterForm to call real tRPC endpoint
+- [x] Handle API errors gracefully with toast notifications
+- [x] Display appropriate success/error messages
+- [x] Test complete signup flow
+
+### Testing
+- [x] Write vitest tests for waitlist API (5 tests)
+- [x] Write vitest tests for newsletter API (5 tests)
+- [x] Write integration tests for waitlist with newsletter opt-in (2 tests)
+- [x] Fix duplicate entry error handling (all 12 tests passing)
