@@ -16,6 +16,7 @@ describe("Waitlist API", () => {
     const testEmail = `test-${Date.now()}@example.com`;
     
     const result = await caller.waitlist.signup({
+      firstName: "Test",
       email: testEmail,
       platform: "both",
       newsletterOptin: true,
@@ -28,6 +29,7 @@ describe("Waitlist API", () => {
   it("should reject invalid email format", async () => {
     await expect(
       caller.waitlist.signup({
+        firstName: "Test",
         email: "invalid-email",
         platform: "ios",
         newsletterOptin: false,
@@ -40,6 +42,7 @@ describe("Waitlist API", () => {
     
     // First signup should succeed
     await caller.waitlist.signup({
+      firstName: "Test",
       email: testEmail,
       platform: "android",
       newsletterOptin: false,
@@ -48,6 +51,7 @@ describe("Waitlist API", () => {
     // Second signup with same email should fail
     await expect(
       caller.waitlist.signup({
+        firstName: "Test",
         email: testEmail,
         platform: "ios",
         newsletterOptin: true,
@@ -70,6 +74,7 @@ describe("Waitlist API", () => {
       const testEmail = `platform-test-${platform}-${Date.now()}@example.com`;
       
       const result = await caller.waitlist.signup({
+        firstName: "Platform",
         email: testEmail,
         platform,
         newsletterOptin: false,
@@ -152,6 +157,7 @@ describe("Integration: Waitlist with Newsletter Opt-in", () => {
     
     // Sign up for waitlist with newsletter opt-in
     const waitlistResult = await caller.waitlist.signup({
+      firstName: "Integration",
       email: testEmail,
       platform: "both",
       newsletterOptin: true,
@@ -173,6 +179,7 @@ describe("Integration: Waitlist with Newsletter Opt-in", () => {
     
     // Sign up for waitlist without newsletter opt-in
     const waitlistResult = await caller.waitlist.signup({
+      firstName: "NoOptin",
       email: testEmail,
       platform: "ios",
       newsletterOptin: false,
@@ -195,6 +202,7 @@ describe("Waitlist Email Confirmation", () => {
     const testEmail = `email-test-${Date.now()}@example.com`;
     
     const result = await caller.waitlist.signup({
+      firstName: "Email",
       email: testEmail,
       platform: "ios",
       newsletterOptin: false,
@@ -210,6 +218,7 @@ describe("Waitlist Email Confirmation", () => {
     
     // First, sign up to get a token
     const signupResult = await caller.waitlist.signup({
+      firstName: "Confirm",
       email: testEmail,
       platform: "android",
       newsletterOptin: false,
@@ -239,6 +248,7 @@ describe("Waitlist Email Confirmation", () => {
     
     // Sign up
     await caller.waitlist.signup({
+      firstName: "Already",
       email: testEmail,
       platform: "both",
       newsletterOptin: false,

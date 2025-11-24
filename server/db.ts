@@ -298,7 +298,7 @@ export async function hasEmailBeenSent(
  */
 export async function getWaitlistMembersForDripEmail(
   emailType: "day_1" | "day_3" | "day_7"
-): Promise<Array<{ id: number; email: string; confirmedAt: Date }>> {
+): Promise<Array<{ id: number; email: string; firstName: string | null; confirmedAt: Date }>> {
   const db = await getDb();
   if (!db) {
     throw new Error("Database not available");
@@ -315,6 +315,7 @@ export async function getWaitlistMembersForDripEmail(
       .select({
         id: waitlistSignups.id,
         email: waitlistSignups.email,
+        firstName: waitlistSignups.firstName,
         confirmedAt: waitlistSignups.confirmedAt,
       })
       .from(waitlistSignups)
@@ -333,6 +334,7 @@ export async function getWaitlistMembersForDripEmail(
         eligibleMembers.push({
           id: signup.id,
           email: signup.email,
+          firstName: signup.firstName,
           confirmedAt: signup.confirmedAt,
         });
       }

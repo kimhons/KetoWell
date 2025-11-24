@@ -11,10 +11,11 @@ const APP_URL = process.env.VITE_APP_URL || 'http://localhost:3000';
  */
 export async function sendWaitlistConfirmationEmail(params: {
   email: string;
+  firstName?: string;
   confirmationToken: string;
   platform: string;
 }) {
-  const { email, confirmationToken, platform } = params;
+  const { email, firstName, confirmationToken, platform } = params;
   const confirmationUrl = `${APP_URL}/api/waitlist/confirm/${confirmationToken}`;
 
   try {
@@ -24,6 +25,7 @@ export async function sendWaitlistConfirmationEmail(params: {
       subject: '🎉 Welcome to KetoWell - Confirm Your Waitlist Spot',
       html: getWaitlistConfirmationEmailHTML({
         email,
+        firstName,
         confirmationUrl,
         platform,
       }),
@@ -42,10 +44,12 @@ export async function sendWaitlistConfirmationEmail(params: {
  */
 function getWaitlistConfirmationEmailHTML(params: {
   email: string;
+  firstName?: string;
   confirmationUrl: string;
   platform: string;
 }): string {
-  const { confirmationUrl, platform } = params;
+  const { firstName, confirmationUrl, platform } = params;
+  const greeting = firstName ? `Hi ${firstName}` : 'Hi there';
   
   const platformText = 
     platform === 'ios' ? 'iOS' :
@@ -74,10 +78,12 @@ function getWaitlistConfirmationEmailHTML(params: {
           </tr>
           
           <!-- Body -->
-          <tr>
-            <td style="padding: 40px;">
-              <h2 style="margin: 0 0 16px; color: #1A365D; font-size: 24px; font-weight: 600;">🎉 You're on the Waitlist!</h2>
+          <t            <td style="padding: 40px;">
+              <h2 style="margin: 0 0 16px; color: #1A365D; font-size: 24px; font-weight: 600;">🎉 Welcome to the KetoWell Waitlist!</h2>
               
+              <p style="margin: 0 0 16px; color: #4A5568; font-size: 16px; line-height: 1.6;">
+                ${greeting},
+              </p>        
               <p style="margin: 0 0 16px; color: #4A5568; font-size: 16px; line-height: 1.6;">
                 Thank you for joining the KetoWell waitlist! We're excited to have you as part of our early community.
               </p>

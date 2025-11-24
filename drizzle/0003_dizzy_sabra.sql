@@ -1,0 +1,1 @@
+ALTER TABLE `waitlist_signups` ADD `first_name` varchar(100);

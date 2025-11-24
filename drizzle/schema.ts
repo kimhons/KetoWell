@@ -31,6 +31,7 @@ export type InsertUser = typeof users.$inferInsert;
 export const waitlistSignups = mysqlTable("waitlist_signups", {
   id: int("id").autoincrement().primaryKey(),
   email: varchar("email", { length: 320 }).notNull().unique(),
+  firstName: varchar("first_name", { length: 100 }),
   platform: mysqlEnum("platform", ["ios", "android", "both"]).notNull(),
   newsletterOptin: int("newsletter_optin").notNull().default(0), // 0 = false, 1 = true (MySQL doesn't have native boolean)
   createdAt: timestamp("created_at").defaultNow().notNull(),

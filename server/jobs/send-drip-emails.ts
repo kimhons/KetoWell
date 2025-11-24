@@ -51,11 +51,20 @@ async function sendDripEmailBatch(emailType: EmailType): Promise<EmailResult[]> 
         // Select the appropriate email function
         let emailResult;
         if (emailType === "day_1") {
-          emailResult = await sendDay1Email({ email: member.email });
+          emailResult = await sendDay1Email({ 
+            email: member.email,
+            firstName: member.firstName || undefined,
+          });
         } else if (emailType === "day_3") {
-          emailResult = await sendDay3Email({ email: member.email });
+          emailResult = await sendDay3Email({ 
+            email: member.email,
+            firstName: member.firstName || undefined,
+          });
         } else {
-          emailResult = await sendDay7Email({ email: member.email });
+          emailResult = await sendDay7Email({ 
+            email: member.email,
+            firstName: member.firstName || undefined,
+          });
         }
 
         if (emailResult.success) {

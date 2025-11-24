@@ -559,3 +559,39 @@
 - [x] Verify email templates send correctly (3 tests)
 - [x] Test that unconfirmed members are excluded
 - [x] All 28 tests passing (16 router + 10 drip email + 2 other)
+
+## Email Personalization
+
+### Database Schema
+- [x] Add firstName field to waitlist_signups table (varchar 100, nullable)
+- [x] Run database migration (0003_dizzy_sabra.sql)
+
+### Frontend Updates
+- [x] Add first name input field to WaitlistModal (optional field)
+- [x] Add form validation for first name (maxLength 100)
+- [x] Update form submission to include firstName
+- [x] Reset firstName in form after successful submission
+
+### Backend API Updates
+- [x] Update waitlist.signup mutation schema to accept firstName (optional)
+- [x] Store firstName in database during signup
+- [x] Update sendWaitlistConfirmationEmail to accept firstName
+- [x] Update confirmation email template to use personalized greeting
+
+### Email Template Updates
+- [x] Update Day 1 email template to use firstName (already implemented)
+- [x] Update Day 3 email template to use firstName (already implemented)
+- [x] Update Day 7 email template to use firstName (already implemented)
+- [x] Update confirmation email template with personalized greeting
+- [x] All templates use fallback "Hi there" when firstName is empty
+
+### Drip Email Job Updates
+- [x] Update getWaitlistMembersForDripEmail to return firstName
+- [x] Pass firstName to sendDay1Email, sendDay3Email, sendDay7Email
+- [x] Handle cases where firstName is null/empty (convert to undefined)
+
+### Testing
+- [x] Update all 16 router tests to include firstName
+- [x] Test personalized email greetings
+- [x] Verify fallback for users without firstName
+- [x] All 28 tests passing (16 router + 10 drip email + 2 other)

@@ -22,6 +22,7 @@ interface WaitlistModalProps {
 }
 
 export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
+  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [platform, setPlatform] = useState<"ios" | "android" | "both">("both");
   const [joinNewsletter, setJoinNewsletter] = useState(true);
@@ -42,6 +43,7 @@ export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps
       // Reset form after delay
       setTimeout(() => {
         setIsSuccess(false);
+        setFirstName("");
         setEmail("");
         setPlatform("both");
         setJoinNewsletter(true);
@@ -63,6 +65,7 @@ export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps
     }
 
     waitlistMutation.mutate({
+      firstName: firstName.trim() || undefined,
       email,
       platform,
       newsletterOptin: joinNewsletter,
@@ -88,6 +91,19 @@ export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps
             </DialogHeader>
 
             <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+              {/* First Name Input */}
+              <div className="space-y-2">
+                <Label htmlFor="waitlist-firstName">First Name (Optional)</Label>
+                <Input
+                  id="waitlist-firstName"
+                  type="text"
+                  placeholder="John"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  maxLength={100}
+                />
+              </div>
+
               {/* Email Input */}
               <div className="space-y-2">
                 <Label htmlFor="waitlist-email">Email Address</Label>

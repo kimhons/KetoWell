@@ -26,6 +26,7 @@ export const appRouter = router({
       .input(
         z.object({
           email: z.string().email("Invalid email address"),
+          firstName: z.string().min(1, "First name is required").max(100).optional(),
           platform: z.enum(["ios", "android", "both"]),
           newsletterOptin: z.boolean(),
         })
@@ -38,6 +39,7 @@ export const appRouter = router({
           // Create waitlist signup
           await createWaitlistSignup({
             email: input.email,
+            firstName: input.firstName || null,
             platform: input.platform,
             newsletterOptin: input.newsletterOptin ? 1 : 0,
             confirmationToken,
@@ -61,6 +63,7 @@ export const appRouter = router({
           // Send confirmation email
           const emailResult = await sendWaitlistConfirmationEmail({
             email: input.email,
+            firstName: input.firstName,
             confirmationToken,
             platform: input.platform,
           });
