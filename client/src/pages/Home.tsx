@@ -34,7 +34,7 @@ export default function Home() {
             <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">
               Features
             </a>
-            <a href="#research" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/research" className="text-sm font-medium hover:text-primary transition-colors">
               Research
             </a>
             <a href="#safety" className="text-sm font-medium hover:text-primary transition-colors">
@@ -453,10 +453,12 @@ export default function Home() {
             </div>
             
             <div className="text-center mt-12">
-              <Button variant="outline" size="lg">
-                Explore Full Research Library
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+              <a href="/research">
+                <Button variant="outline" size="lg">
+                  Explore Full Research Library
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </a>
             </div>
           </div>
         </section>

@@ -47,3 +47,13 @@
 - [ ] Accessibility audit
 - [ ] Save checkpoint
 - [ ] Deploy to production
+
+## New Feature: Research Library Page
+- [x] Create Research page component with navigation tabs
+- [x] Build Metabolic Health section with study details
+- [x] Build Cardiovascular Health section with study details
+- [x] Build Neurological Health section with study details
+- [x] Add citations and references for all studies
+- [x] Add route to App.tsx for /research page
+- [x] Update homepage navigation links to point to research page
+- [x] Test research page functionality
