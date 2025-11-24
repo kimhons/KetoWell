@@ -67,7 +67,7 @@ export default function Home() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-hero py-20 md:py-32">
+        <section className="relative overflow-hidden py-20 md:py-32" style={{backgroundImage: 'url(/images/hero-background.png)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
           <div className="container">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="text-white space-y-6 animate-fade-in">
@@ -172,8 +172,8 @@ export default function Home() {
               </Card>
               
               <Card className="p-6 hover:shadow-medium transition-shadow">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <Brain className="w-6 h-6 text-primary" />
+                <div className="mb-4">
+                  <img src="/images/meal-tracking-icon.png" alt="Meal Tracking" className="w-16 h-16" />
                 </div>
                 <h4>Natural Language Logging</h4>
                 <p className="text-muted-foreground mt-2">
@@ -182,8 +182,8 @@ export default function Home() {
               </Card>
               
               <Card className="p-6 hover:shadow-medium transition-shadow">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <Heart className="w-6 h-6 text-primary" />
+                <div className="mb-4">
+                  <img src="/images/personalized-guidance-icon.png" alt="Personalized Guidance" className="w-16 h-16" />
                 </div>
                 <h4>Behavior Change Coaching</h4>
                 <p className="text-muted-foreground mt-2">
@@ -192,8 +192,8 @@ export default function Home() {
               </Card>
               
               <Card className="p-6 hover:shadow-medium transition-shadow">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <Activity className="w-6 h-6 text-primary" />
+                <div className="mb-4">
+                  <img src="/images/symptom-monitoring-icon.png" alt="Symptom Monitoring" className="w-16 h-16" />
                 </div>
                 <h4>Symptom Assessment</h4>
                 <p className="text-muted-foreground mt-2">
