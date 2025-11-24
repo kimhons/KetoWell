@@ -17,6 +17,8 @@ import { APP_TITLE } from "@/const";
 import { blogArticles } from "@/data/blogArticles";
 import { Link, useParams } from "wouter";
 import { Streamdown } from "streamdown";
+import SEO from "@/components/SEO";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 export default function BlogArticle() {
   const params = useParams();
@@ -43,6 +45,34 @@ export default function BlogArticle() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        title={article.title}
+        description={article.excerpt}
+        keywords={`${article.category}, keto, ketogenic diet, ${article.title.toLowerCase()}`}
+        image={article.image}
+        url={`/blog/${article.slug}`}
+        type="article"
+        author={article.author}
+        publishedTime={article.publishDate}
+      />
+      <SchemaMarkup type="organization" />
+      <SchemaMarkup
+        type="article"
+        title={article.title}
+        description={article.excerpt}
+        author={article.author}
+        publishedDate={article.publishDate}
+        image={article.image}
+        url={`/blog/${article.slug}`}
+      />
+      <SchemaMarkup
+        type="breadcrumb"
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Blog", url: "/blog" },
+          { name: article.title, url: `/blog/${article.slug}` },
+        ]}
+      />
       {/* Navigation Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">

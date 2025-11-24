@@ -9,10 +9,26 @@ import {
   Sparkles
 } from "lucide-react";
 import { APP_TITLE } from "@/const";
+import SEO from "@/components/SEO";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 export default function Pricing() {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        title="Pricing Plans"
+        description="Choose the KetoWell plan that's right for you. Free basic features, Premium AI coaching with Dr. Ketone, or Clinical tier with provider portal integration."
+        keywords="keto app pricing, ketogenic diet app cost, Dr. Ketone pricing, clinical keto app"
+        url="/pricing"
+      />
+      <SchemaMarkup type="organization" />
+      <SchemaMarkup
+        type="breadcrumb"
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Pricing", url: "/pricing" },
+        ]}
+      />
       {/* Navigation Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">

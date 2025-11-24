@@ -16,10 +16,26 @@ import {
   Heart
 } from "lucide-react";
 import { APP_TITLE } from "@/const";
+import SEO from "@/components/SEO";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 export default function ForProviders() {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        title="For Healthcare Providers"
+        description="KetoWell provider portal enables seamless patient monitoring, safety alerts, and evidence-based ketogenic diet management. Integrate with your clinical workflow."
+        keywords="ketogenic diet clinical tools, keto provider portal, patient monitoring keto, clinical keto app"
+        url="/for-providers"
+      />
+      <SchemaMarkup type="organization" />
+      <SchemaMarkup
+        type="breadcrumb"
+        items={[
+          { name: "Home", url: "/" },
+          { name: "For Providers", url: "/for-providers" },
+        ]}
+      />
       {/* Navigation Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">

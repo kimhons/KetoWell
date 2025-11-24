@@ -13,10 +13,26 @@ import { APP_TITLE } from "@/const";
 import { blogArticles } from "@/data/blogArticles";
 import { Link } from "wouter";
 import NewsletterForm from "@/components/NewsletterForm";
+import SEO from "@/components/SEO";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 export default function Blog() {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        title="Ketogenic Health Blog"
+        description="Evidence-based articles on ketogenic diets, metabolic health, and the science behind KetoWell. Written by healthcare professionals and backed by peer-reviewed research."
+        keywords="keto blog, ketogenic diet articles, keto flu, SGLT2 inhibitors, diabetes keto, keto research"
+        url="/blog"
+      />
+      <SchemaMarkup type="organization" />
+      <SchemaMarkup
+        type="breadcrumb"
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Blog", url: "/blog" },
+        ]}
+      />
       {/* Navigation Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">

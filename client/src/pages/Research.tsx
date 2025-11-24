@@ -15,6 +15,8 @@ import {
   ChevronUp
 } from "lucide-react";
 import { APP_TITLE } from "@/const";
+import SEO from "@/components/SEO";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 export default function Research() {
   const [expandedStudy, setExpandedStudy] = useState<string | null>(null);
@@ -25,6 +27,20 @@ export default function Research() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        title="Clinical Research & Evidence"
+        description="Comprehensive research on ketogenic diets for metabolic health, cardiovascular disease, neurological conditions, and more. Every claim backed by peer-reviewed studies from 2024-2025."
+        keywords="ketogenic diet research, keto clinical trials, diabetes keto studies, cardiovascular keto, neurological keto, evidence-based keto"
+        url="/research"
+      />
+      <SchemaMarkup type="organization" />
+      <SchemaMarkup
+        type="breadcrumb"
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Research", url: "/research" },
+        ]}
+      />
       {/* Navigation Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">

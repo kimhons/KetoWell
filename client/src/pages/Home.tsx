@@ -17,10 +17,20 @@ import {
 } from "lucide-react";
 import { APP_TITLE, APP_TAGLINE } from "@/const";
 import NewsletterForm from "@/components/NewsletterForm";
+import SEO from "@/components/SEO";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        title="Transform Your Health with Evidence-Based Keto"
+        description="KetoWell is the first ketogenic diet app that combines medical-grade safety screening, AI-powered guidance from Dr. Ketone, and evidence-based protocols. Start your journey today."
+        keywords="ketogenic diet app, keto app, AI keto coach, Dr. Ketone, medical keto, diabetes keto, evidence-based keto"
+        url="/"
+      />
+      <SchemaMarkup type="organization" />
+      <SchemaMarkup type="website" />
       {/* Navigation Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
