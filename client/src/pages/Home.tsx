@@ -573,12 +573,12 @@ export default function Home() {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Company</h4>
+              <h4 className="font-semibold mb-4">Resources</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground">About</a></li>
-                <li><a href="#" className="hover:text-foreground">Blog</a></li>
+                <li><a href="/blog" className="hover:text-foreground">Blog</a></li>
+                <li><a href="#" className="hover:text-foreground">Help Center</a></li>
+                <li><a href="#" className="hover:text-foreground">Community</a></li>
                 <li><a href="#" className="hover:text-foreground">Contact</a></li>
-                <li><a href="#" className="hover:text-foreground">Careers</a></li>
               </ul>
             </div>
             

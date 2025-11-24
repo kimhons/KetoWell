@@ -9,6 +9,8 @@ import Home from "./pages/Home";
 import Research from "./pages/Research";
 import Pricing from "./pages/Pricing";
 import ForProviders from "./pages/ForProviders";
+import Blog from "./pages/Blog";
+import BlogArticle from "./pages/BlogArticle";
 
 function Router() {
   return (
@@ -17,6 +19,8 @@ function Router() {
       <Route path={"/research"} component={Research} />
       <Route path={"/pricing"} component={Pricing} />
       <Route path={"/for-providers"} component={ForProviders} />
+      <Route path={"/blog"} component={Blog} />
+      <Route path={"/blog/:slug"} component={BlogArticle} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

@@ -99,3 +99,26 @@
 - [x] Add evidence summaries for clinicians
 - [x] Add integration information
 - [x] Add contact/demo request form
+
+## Blog Section Development
+
+### Blog Infrastructure
+- [x] Create /blog landing page with article grid
+- [x] Create blog article template component
+- [x] Add blog navigation links to header
+- [x] Create blog data structure for articles
+
+### Blog Articles (SEO-Optimized)
+- [x] Article 1: "Keto Flu: Causes, Symptoms, and Evidence-Based Management"
+- [x] Article 2: "SGLT2 Inhibitors and Ketogenic Diets: Critical Safety Considerations"
+- [x] Article 3: "Ketogenic Diet for Type 2 Diabetes: What the Latest Research Shows"
+- [ ] Article 4: "The Science Behind Ketones: How They Transform Your Metabolism"
+- [ ] Article 5: "Electrolyte Balance on Keto: A Complete Guide"
+
+### Blog Features
+- [x] Add article categories/tags
+- [x] Add reading time estimates
+- [x] Add social sharing buttons
+- [x] Add related articles section
+- [x] Add author bios
+- [x] Add publication dates
