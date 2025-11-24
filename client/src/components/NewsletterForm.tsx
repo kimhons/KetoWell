@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { trackNewsletterSignup } from "@/lib/analytics";
 
 interface NewsletterFormProps {
   variant?: "light" | "dark";
@@ -66,6 +67,10 @@ export default function NewsletterForm({ variant = "light", className = "" }: Ne
       toast.success("Successfully subscribed! Check your inbox for confirmation.", {
         duration: 5000,
       });
+      
+      // Track newsletter signup
+      trackNewsletterSignup(window.location.pathname);
+      
       setEmail("");
     } catch (error) {
       console.error("Newsletter subscription error:", error);

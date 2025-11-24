@@ -175,3 +175,33 @@
 - [x] Add sitemap.xml
 - [ ] Verify all images have alt text (to be reviewed)
 - [ ] Test social sharing previews (requires deployment)
+
+## Google Analytics 4 Integration
+
+### GA4 Setup
+- [x] Create GA4 tracking component (AnalyticsProvider)
+- [x] Add GA4 script dynamically via component
+- [x] Implement page view tracking
+- [x] Add privacy-compliant implementation (respects DNT)
+- [x] Configure environment variable for GA4 measurement ID
+
+### Event Tracking
+- [x] Track newsletter subscription events
+- [x] Track download app button clicks (via TrackedButton)
+- [x] Track navigation link clicks
+- [x] Track blog article views
+- [x] Track research page interactions
+- [x] Track pricing plan selections
+- [x] Track provider demo requests
+
+### Conversion Goals
+- [x] Set up conversion tracking for newsletter signups
+- [x] Set up conversion tracking for app download clicks
+- [x] Set up conversion tracking for provider demo requests
+- [x] Set up conversion tracking for pricing plan clicks
+
+### Testing & Documentation
+- [x] Create analytics utility with type-safe functions
+- [x] Document GA4 setup instructions (GA4_SETUP.md)
+- [ ] User must configure GA4 Measurement ID in env
+- [ ] User must verify events in GA4 dashboard after deployment
