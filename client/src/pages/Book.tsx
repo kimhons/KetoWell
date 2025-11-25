@@ -37,7 +37,7 @@ export default function Book() {
     <>
       <SEO
         title="KetoWell Book - Transform Your Health with Ketogenic Living"
-        description="Download the comprehensive KetoWell book: 56,620 words of evidence-based ketogenic health guidance. Reverse diabetes, enhance cognition, achieve sustainable transformation. 200+ studies cited."
+        description="Get the comprehensive KetoWell book for $9.99: 56,620 words of evidence-based ketogenic health guidance. Reverse diabetes, enhance cognition, achieve sustainable transformation. 200+ studies cited."
         keywords="ketogenic diet book, keto book, diabetes reversal, metabolic health book, evidence-based nutrition, KetoWell book"
         image="/images/ketowell-book-cover.png"
       />
@@ -55,8 +55,8 @@ export default function Book() {
                   className="w-full max-w-md rounded-lg shadow-2xl"
                 />
                 <div className="absolute -bottom-4 -right-4 bg-primary text-primary-foreground px-6 py-3 rounded-lg shadow-lg">
-                  <p className="text-sm font-semibold">303 Pages</p>
-                  <p className="text-xs opacity-90">56,620 Words</p>
+                  <p className="text-2xl font-bold">$9.99</p>
+                  <p className="text-xs opacity-90">Digital Edition</p>
                 </div>
               </div>
             </div>
@@ -82,24 +82,35 @@ export default function Book() {
                 supported by AI-powered technology, and designed for long-term success.
               </p>
 
+              {/* Pricing */}
+              <div className="bg-muted/50 rounded-lg p-6 border-2 border-primary/20">
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-4xl font-bold text-primary">$9.99</span>
+                  <span className="text-muted-foreground">Digital Edition (PDF)</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Instant access • 303 pages • 200+ studies • Lifetime updates
+                </p>
+              </div>
+
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button
                   size="lg"
-                  onClick={handleDownloadPDF}
-                  className="text-lg px-8 py-6"
-                >
-                  <Download className="mr-2 h-5 w-5" />
-                  Download Free PDF
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
                   onClick={handleAmazonPreorder}
                   className="text-lg px-8 py-6"
                 >
                   <ExternalLink className="mr-2 h-5 w-5" />
-                  Pre-Order on Amazon
+                  Buy on Amazon - $9.99
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={handleDownloadPDF}
+                  className="text-lg px-8 py-6"
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Buy Digital PDF - $9.99
                 </Button>
               </div>
 
@@ -277,11 +288,11 @@ export default function Book() {
             <Accordion type="single" collapsible className="space-y-4">
               <AccordionItem value="item-1">
                 <AccordionTrigger className="text-left">
-                  Is the PDF version really free?
+                  What formats are available?
                 </AccordionTrigger>
                 <AccordionContent>
-                  Yes! We offer the complete PDF version for free download. You can also purchase the book on Amazon 
-                  in Kindle or paperback format if you prefer those formats.
+                  The book is available in multiple formats: Digital PDF ($9.99), Kindle edition on Amazon ($9.99), 
+                  and paperback on Amazon ($19.99). All formats include the complete 303-page content with 200+ studies.
                 </AccordionContent>
               </AccordionItem>
 
@@ -337,7 +348,7 @@ export default function Book() {
                 </AccordionTrigger>
                 <AccordionContent>
                   The book is currently available for pre-order on Amazon. The official release date is [INSERT DATE]. 
-                  You can download the free PDF version immediately while you wait for the Amazon release.
+                  You can purchase the digital PDF version ($9.99) for immediate access.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -351,25 +362,25 @@ export default function Book() {
               Ready to Transform Your Health?
             </h2>
             <p className="text-xl text-muted-foreground">
-              Download the complete KetoWell book for free and begin your journey to metabolic health today.
+              Get the complete KetoWell book for just $9.99 and begin your journey to metabolic health today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                onClick={handleDownloadPDF}
-                className="text-lg px-8 py-6"
-              >
-                <Download className="mr-2 h-5 w-5" />
-                Download Free PDF
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
                 onClick={handleAmazonPreorder}
                 className="text-lg px-8 py-6"
               >
                 <ExternalLink className="mr-2 h-5 w-5" />
-                Pre-Order on Amazon
+                Buy on Amazon - $9.99
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={handleDownloadPDF}
+                className="text-lg px-8 py-6"
+              >
+                <Download className="mr-2 h-5 w-5" />
+                Buy Digital PDF - $9.99
               </Button>
             </div>
             <p className="text-sm text-muted-foreground pt-4">

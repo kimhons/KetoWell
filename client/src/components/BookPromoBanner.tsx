@@ -73,12 +73,12 @@ export default function BookPromoBanner() {
               </div>
               
               <h3 className="text-xl md:text-2xl lg:text-3xl font-bold leading-tight">
-                Free Book: Transform Your Health with Ketogenic Living
+                New Book: Transform Your Health with Ketogenic Living
               </h3>
               
               <p className="text-sm md:text-base text-white/90 max-w-2xl">
-                Download our comprehensive 303-page guide with 200+ studies on reversing diabetes, 
-                enhancing cognition, and achieving sustainable health transformation.
+                Get our comprehensive 303-page guide with 200+ studies on reversing diabetes, 
+                enhancing cognition, and achieving sustainable health transformation. Only $9.99.
               </p>
 
               {/* Stats */}
@@ -89,7 +89,7 @@ export default function BookPromoBanner() {
                 </div>
                 <div className="flex items-center gap-1">
                   <Download className="h-4 w-4" />
-                  <span className="font-semibold">Free PDF</span>
+                  <span className="font-semibold">Only $9.99</span>
                 </div>
                 <div className="hidden sm:flex items-center gap-1">
                   <Sparkles className="h-4 w-4" />
@@ -105,8 +105,8 @@ export default function BookPromoBanner() {
                   size="lg"
                   className="bg-white text-blue-600 hover:bg-white/90 font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all"
                 >
-                  <Download className="mr-2 h-5 w-5" />
-                  Get Free Book
+                  <BookOpen className="mr-2 h-5 w-5" />
+                  Get Book - $9.99
                 </Button>
               </Link>
             </div>
