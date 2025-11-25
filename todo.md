@@ -652,3 +652,40 @@
 - [x] Test confirmation rate calculation
 - [x] Test data consistency across metrics
 - [x] All 36 tests passing (28 previous + 8 admin analytics)
+
+## Missing Features from Design Specification
+
+### Homepage Enhancements
+- [x] Add Dr. Ketone interactive chat demo component
+- [x] Create testimonials carousel with success stories (5 testimonials with metrics)
+- [x] Add trust indicators section (21+ meta-analyses, 43,776+ participants)
+- [x] Enhance evidence showcase with interactive cards (3 evidence cards with hover effects)
+- [ ] Add animated gradient background to hero section
+- [ ] Implement scroll-triggered animations
+- [x] Add feature grid with icons and descriptions (already exists)
+
+### Science Page (/science)
+- [ ] Create interactive evidence matrix table
+- [ ] Add mechanism of action animated diagrams
+- [ ] Build research library with filtering
+- [ ] Add safety information section with warnings
+
+### For Providers Page Enhancements
+- [ ] Add provider portal features showcase
+- [ ] Create clinical evidence summary section
+- [ ] Add downloadable resources section (PDFs)
+- [ ] Implement demo request form
+
+### Visual Design Improvements
+- [ ] Apply gradient mesh overlays to hero sections
+- [ ] Implement typography scale from specification
+- [ ] Add page load animation sequences
+- [ ] Implement scroll-triggered fade-up animations
+- [ ] Ensure responsive breakpoints match specification
+
+### Additional Pages/Features
+- [ ] Create /features page (currently missing)
+- [ ] Create /resources page with blog, guides, recipes
+- [ ] Create /about page with mission, team, press
+- [ ] Add medical disclaimer modal/page
+- [ ] Implement footer with all navigation links

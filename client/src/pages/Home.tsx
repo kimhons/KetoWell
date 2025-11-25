@@ -23,6 +23,10 @@ import SchemaMarkup from "@/components/SchemaMarkup";
 import DrKetoneChatDemo from "@/components/DrKetoneChatDemo";
 import FAQ from "@/components/FAQ";
 import WaitlistModal from "@/components/WaitlistModal";
+import DrKetoneDemo from "@/components/DrKetoneDemo";
+import Testimonials from "@/components/Testimonials";
+import EvidenceShowcase from "@/components/EvidenceShowcase";
+import TrustIndicators from "@/components/TrustIndicators";
 import { useState } from "react";
 
 export default function Home() {
@@ -126,7 +130,7 @@ export default function Home() {
               </div>
               
               <div className="relative animate-slide-up flex justify-center">
-                <DrKetoneChatDemo />
+                <DrKetoneDemo />
                 <div className="absolute inset-0 bg-gradient-cta blur-3xl opacity-20 -z-10"></div>
               </div>
             </div>
@@ -134,32 +138,7 @@ export default function Home() {
         </section>
 
         {/* Trust Indicators */}
-        <section className="py-12 border-b">
-          <div className="container">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              <div>
-                <Microscope className="w-8 h-8 mx-auto mb-2 text-primary" />
-                <p className="font-semibold">12+ Studies</p>
-                <p className="text-sm text-muted-foreground">2024-2025 Research</p>
-              </div>
-              <div>
-                <Shield className="w-8 h-8 mx-auto mb-2 text-primary" />
-                <p className="font-semibold">Medical-Grade</p>
-                <p className="text-sm text-muted-foreground">Safety Screening</p>
-              </div>
-              <div>
-                <Brain className="w-8 h-8 mx-auto mb-2 text-primary" />
-                <p className="font-semibold">AI-Powered</p>
-                <p className="text-sm text-muted-foreground">Dr. Ketone Assistant</p>
-              </div>
-              <div>
-                <Users className="w-8 h-8 mx-auto mb-2 text-primary" />
-                <p className="font-semibold">10,000+</p>
-                <p className="text-sm text-muted-foreground">Active Users</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <TrustIndicators />
 
         {/* Dr. Ketone Showcase */}
         <section id="features" className="py-20 md:py-32">
@@ -340,17 +319,30 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Evidence-Based Approach */}
+        {/* Evidence Showcase */}
         <section id="research" className="py-20 md:py-32">
           <div className="container">
+            <EvidenceShowcase />
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="py-20 md:py-32 bg-muted/50">
+          <div className="container">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <Badge className="mb-4">Evidence-Based</Badge>
-              <h2>Every Claim Backed by Science</h2>
+              <Badge className="mb-4">Success Stories</Badge>
+              <h2>Real Results from Real People</h2>
               <p className="text-muted-foreground mt-4">
-                We analyzed 12+ peer-reviewed studies from 2024-2025 to build the most scientifically rigorous ketogenic health app available.
+                See how KetoWell has transformed the lives of thousands of users with evidence-based guidance and AI-powered support.
               </p>
             </div>
-            
+            <Testimonials />
+          </div>
+        </section>
+
+        {/* Additional Evidence Details */}
+        <section className="py-20 md:py-32">
+          <div className="container">
             <div className="grid md:grid-cols-2 gap-8">
               <Card className="p-8 hover:shadow-medium transition-shadow">
                 <h3 className="mb-4">Metabolic Health</h3>
