@@ -158,6 +158,39 @@ function getBookPurchaseEmailHTML(params: {
                 </ul>
               </div>
               
+              <!-- Social Sharing -->
+              <div style="background-color: #F0FDF4; border-radius: 6px; padding: 24px; margin: 0 0 24px; border: 2px solid #10B981;">
+                <h3 style="margin: 0 0 16px; color: #065F46; font-size: 18px; font-weight: 600;">💚 Share Your Purchase</h3>
+                <p style="margin: 0 0 16px; color: #047857; font-size: 14px; line-height: 1.6;">
+                  Help others discover evidence-based ketogenic health information! Share your purchase on social media:
+                </p>
+                <table role="presentation" style="width: 100%;">
+                  <tr>
+                    <td align="center">
+                      <table role="presentation">
+                        <tr>
+                          <td style="padding: 0 8px;">
+                            <a href="https://twitter.com/intent/tweet?text=Just%20got%20the%20KetoWell%20book!%20%F0%9F%93%9A%20Evidence-based%20ketogenic%20health%20guide%20with%20200%2B%20studies.%20Highly%20recommend!%20%23KetoWell%20%23KetoLife%20%23MetabolicHealth&url=https://ketowell.com/book" style="display: inline-block; padding: 10px 20px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 600;">
+                              Share on X
+                            </a>
+                          </td>
+                          <td style="padding: 0 8px;">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://ketowell.com/book" style="display: inline-block; padding: 10px 20px; background-color: #1877F2; color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 600;">
+                              Share on Facebook
+                            </a>
+                          </td>
+                          <td style="padding: 0 8px;">
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ketowell.com/book" style="display: inline-block; padding: 10px 20px; background-color: #0A66C2; color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 600;">
+                              Share on LinkedIn
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
               <!-- Next Steps -->
               <div style="background-color: #EBF8FF; border-radius: 6px; padding: 24px; margin: 0 0 24px;">
                 <h3 style="margin: 0 0 16px; color: #2C5282; font-size: 18px; font-weight: 600;">📖 What's Next?</h3>

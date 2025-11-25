@@ -6,6 +6,7 @@ import SEO from "@/components/SEO";
 import { Link } from "wouter";
 import { verifyBookPurchase } from "@/lib/bookApi";
 import { toast } from "sonner";
+import SocialShareButtons from "@/components/SocialShareButtons";
 
 export default function BookPurchaseSuccess() {
   const [isVerifying, setIsVerifying] = useState(true);
@@ -147,6 +148,17 @@ export default function BookPurchaseSuccess() {
                   </div>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Social Sharing */}
+          <Card className="mb-8">
+            <CardContent className="pt-6">
+              <h2 className="text-2xl font-bold mb-4">Share Your Purchase</h2>
+              <p className="text-muted-foreground mb-6">
+                Help others discover evidence-based ketogenic health information! Share your purchase on social media and inspire your network.
+              </p>
+              <SocialShareButtons source="book_purchase_success" />
             </CardContent>
           </Card>
 
