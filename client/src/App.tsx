@@ -18,12 +18,14 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import WaitlistConfirm from "./pages/WaitlistConfirm";
 import AdminDashboard from "./pages/AdminDashboard";
+import Book from "./pages/Book";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/book"} component={Book} />
       <Route path={"/research"} component={Research} />
       <Route path={"/pricing"} component={Pricing} />
       <Route path={"/for-providers"} component={ForProviders} />
