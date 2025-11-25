@@ -792,3 +792,57 @@
 - [x] Update SEO description to include pricing
 - [ ] Set up payment processing for direct PDF sales (Stripe integration needed)
 - [ ] Update analytics conversion values if needed
+
+## Stripe Payment Integration for Book Sales
+
+### Stripe Setup
+- [ ] Add Stripe feature to project using webdev_add_feature
+- [ ] Configure Stripe API keys (test and production)
+- [ ] Create Stripe product for KetoWell book ($9.99)
+- [ ] Set up webhook endpoints for payment confirmation
+- [ ] Test Stripe integration in development
+
+### Book Purchase Flow
+- [ ] Create book purchase API endpoint
+- [ ] Create Stripe Checkout session for book purchase
+- [ ] Handle successful payment webhook
+- [ ] Generate secure PDF download link after payment
+- [ ] Send purchase confirmation email with download link
+- [ ] Create purchase success page
+- [ ] Create purchase failure/cancel page
+- [ ] Add purchase history to user dashboard
+
+### Security & Delivery
+- [ ] Implement secure PDF delivery (signed URLs with expiration)
+- [ ] Store purchase records in database
+- [ ] Prevent duplicate purchases (check if user already owns book)
+- [ ] Add download limit per purchase (e.g., 5 downloads)
+- [ ] Implement fraud detection/prevention
+
+## Stripe Payment Integration for Book Sales
+
+### Backend Implementation
+- [x] Create book_purchases database table (schema added and migrated)
+- [x] Create Stripe product and price for KetoWell book (via MCP)
+- [x] Create API endpoint for creating checkout sessions (/api/book/create-checkout-session)
+- [x] Create API endpoint for verifying purchases (/api/book/verify-purchase/:sessionId)
+- [x] Create API endpoint for download access (/api/book/download)
+- [x] Create API endpoint to check existing purchases (/api/book/check-purchase)
+- [x] Register book routes in server/_core/index.ts
+- [ ] Create webhook handler for payment events (optional enhancement)
+- [ ] Test purchase flow end-to-end with vitest
+
+### Frontend Implementation
+- [x] Update Book page with Stripe checkout integration
+- [x] Create purchase success page (/book/purchase-success)
+- [x] Create API client functions for book purchase (client/src/lib/bookApi.ts)
+- [x] Add loading states to purchase buttons (Loader2 spinner)
+- [x] Add error handling and user feedback (toast notifications)
+- [x] Add route for purchase success page in App.tsx
+- [ ] Test complete purchase flow in browser
+- [ ] Upload actual book PDF to /client/public/ketowell-book.pdf
+
+### Stripe Configuration
+- [ ] User must claim Stripe sandbox at https://dashboard.stripe.com/claim_sandbox/YWNjdF8xU1hOODFCUDNSbFdhaDNTLDE3NjQ2ODgyNzAv100baCPqfOh
+- [ ] Configure Stripe webhook endpoint in dashboard (optional)
+- [ ] Test with Stripe test cards (4242 4242 4242 4242)

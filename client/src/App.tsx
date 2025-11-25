@@ -19,6 +19,7 @@ import TermsOfService from "./pages/TermsOfService";
 import WaitlistConfirm from "./pages/WaitlistConfirm";
 import AdminDashboard from "./pages/AdminDashboard";
 import Book from "./pages/Book";
+import BookPurchaseSuccess from "./pages/BookPurchaseSuccess";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -26,6 +27,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/book"} component={Book} />
+      <Route path={"/book/purchase-success"} component={BookPurchaseSuccess} />
       <Route path={"/research"} component={Research} />
       <Route path={"/pricing"} component={Pricing} />
       <Route path={"/for-providers"} component={ForProviders} />

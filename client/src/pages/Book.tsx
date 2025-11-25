@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Download, BookOpen, Star, CheckCircle2, ExternalLink } from "lucide-react";
+import { Download, BookOpen, Star, CheckCircle2, ExternalLink, Loader2 } from "lucide-react";
 import { trackBookPageView, trackBookPDFDownload, trackBookAmazonClick } from "@/lib/analytics";
 import SEO from "@/components/SEO";
 import { useLocation } from "wouter";
+import { createBookCheckoutSession } from "@/lib/bookApi";
+import { toast } from "sonner";
 
 export default function Book() {
   const [location] = useLocation();
@@ -17,20 +19,37 @@ export default function Book() {
     trackBookPageView(source);
   }, [location]);
 
-  const handleDownloadPDF = () => {
-    // Track download event
-    trackBookPDFDownload("book_page");
-    
-    // Open PDF in new tab
-    window.open("/ketowell-book.pdf", "_blank");
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [isAmazonLoading, setIsAmazonLoading] = useState(false);
+
+  const handlePurchasePDF = async () => {
+    setIsCheckoutLoading(true);
+    try {
+      // Track PDF purchase initiation
+      trackBookPDFDownload("book_page");
+      
+      // Create checkout session
+      const { url } = await createBookCheckoutSession();
+      
+      // Redirect to Stripe Checkout
+      window.location.href = url;
+    } catch (error: any) {
+      console.error("Checkout error:", error);
+      toast.error(error.message || "Failed to start checkout. Please try again.");
+      setIsCheckoutLoading(false);
+    }
   };
 
-  const handleAmazonPreorder = () => {
+  const handleAmazonPurchase = () => {
+    setIsAmazonLoading(true);
     // Track pre-order click
     trackBookAmazonClick("book_page");
     
     // Replace with actual Amazon link when available
     window.open("https://www.amazon.com/dp/[YOUR-ASIN]", "_blank");
+    
+    // Reset loading state after a short delay
+    setTimeout(() => setIsAmazonLoading(false), 1000);
   };
 
   return (
@@ -97,19 +116,29 @@ export default function Book() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button
                   size="lg"
-                  onClick={handleAmazonPreorder}
+                  onClick={handleAmazonPurchase}
+                  disabled={isAmazonLoading}
                   className="text-lg px-8 py-6"
                 >
-                  <ExternalLink className="mr-2 h-5 w-5" />
+                  {isAmazonLoading ? (
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  ) : (
+                    <ExternalLink className="mr-2 h-5 w-5" />
+                  )}
                   Buy on Amazon - $9.99
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={handleDownloadPDF}
+                  onClick={handlePurchasePDF}
+                  disabled={isCheckoutLoading}
                   className="text-lg px-8 py-6"
                 >
-                  <Download className="mr-2 h-5 w-5" />
+                  {isCheckoutLoading ? (
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  ) : (
+                    <Download className="mr-2 h-5 w-5" />
+                  )}
                   Buy Digital PDF - $9.99
                 </Button>
               </div>
@@ -367,19 +396,29 @@ export default function Book() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                onClick={handleAmazonPreorder}
+                onClick={handleAmazonPurchase}
+                disabled={isAmazonLoading}
                 className="text-lg px-8 py-6"
               >
-                <ExternalLink className="mr-2 h-5 w-5" />
+                {isAmazonLoading ? (
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                ) : (
+                  <ExternalLink className="mr-2 h-5 w-5" />
+                )}
                 Buy on Amazon - $9.99
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                onClick={handleDownloadPDF}
+                onClick={handlePurchasePDF}
+                disabled={isCheckoutLoading}
                 className="text-lg px-8 py-6"
               >
-                <Download className="mr-2 h-5 w-5" />
+                {isCheckoutLoading ? (
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                ) : (
+                  <Download className="mr-2 h-5 w-5" />
+                )}
                 Buy Digital PDF - $9.99
               </Button>
             </div>

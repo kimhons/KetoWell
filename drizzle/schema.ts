@@ -72,3 +72,31 @@ export const emailSends = mysqlTable("email_sends", {
 
 export type EmailSend = typeof emailSends.$inferSelect;
 export type InsertEmailSend = typeof emailSends.$inferInsert;
+/**
+ * Book purchases table
+ * Tracks KetoWell book purchases and download access
+ */
+export const bookPurchases = mysqlTable("book_purchases", {
+  id: int("id").autoincrement().primaryKey(),
+  /** User who purchased the book (nullable for guest purchases) */
+  userId: int("user_id"),
+  /** Stripe Payment Intent ID for reference */
+  stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 255 }).notNull().unique(),
+  /** Customer email from Stripe */
+  customerEmail: varchar("customer_email", { length: 320 }).notNull(),
+  /** Customer name from Stripe */
+  customerName: varchar("customer_name", { length: 255 }),
+  /** Purchase amount in cents */
+  amountPaid: int("amount_paid").notNull(),
+  /** Currency code (e.g., 'usd') */
+  currency: varchar("currency", { length: 3 }).notNull().default("usd"),
+  /** Purchase timestamp */
+  purchasedAt: timestamp("purchased_at").defaultNow().notNull(),
+  /** Number of times the PDF has been downloaded */
+  downloadCount: int("download_count").notNull().default(0),
+  /** Last download timestamp */
+  lastDownloadedAt: timestamp("last_downloaded_at"),
+});
+
+export type BookPurchase = typeof bookPurchases.$inferSelect;
+export type InsertBookPurchase = typeof bookPurchases.$inferInsert;
