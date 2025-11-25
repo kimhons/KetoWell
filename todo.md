@@ -595,3 +595,60 @@
 - [x] Test personalized email greetings
 - [x] Verify fallback for users without firstName
 - [x] All 28 tests passing (16 router + 10 drip email + 2 other)
+
+## Admin Analytics Dashboard
+
+### Backend API Endpoints
+- [x] Create admin.analytics query endpoint
+- [x] Add getTotalSignups helper
+- [x] Add getConfirmedSignups helper
+- [x] Add getPlatformBreakdown helper
+- [x] Add getSignupTrends helper (database-agnostic, works with MySQL & SQLite)
+- [x] Add getEmailCampaignStats helper
+- [x] Add getRecentSignups helper (limit 50)
+- [x] Add getTotalNewsletterSubscribers helper
+
+### Dashboard Page
+- [x] Create AdminDashboard page component
+- [x] Add route for /admin/dashboard
+- [x] Create overview cards layout (4 cards)
+- [x] Display total signups metric
+- [x] Display confirmed users metric with confirmation rate
+- [x] Display newsletter subscribers metric
+- [x] Display email delivery rate metric (across all campaigns)
+
+### Charts & Visualizations
+- [x] Install Recharts library (v2.x)
+- [x] Create platform breakdown pie chart (iOS, Android, Both)
+- [x] Create signup trends line chart (last 30 days)
+- [x] Create email campaign status bar chart (sent vs failed)
+- [x] Add responsive chart containers (ResponsiveContainer)
+- [x] Add tooltips and legends to all charts
+
+### Data Tables
+- [x] Create recent signups table (last 50 members)
+- [x] Display email, firstName, platform, newsletterOptin, status, joinedDate
+- [x] Add confirmation status badges (Confirmed/Pending)
+- [x] Add platform badges (iOS/Android/Both)
+- [x] Add date formatting (toLocaleDateString)
+- [x] Add hover effects on table rows
+
+### Styling & UX
+- [x] Use consistent Card/CardHeader/CardContent design
+- [x] Add loading states with Skeleton components
+- [x] Add error handling with retry button
+- [x] Make dashboard mobile-responsive (grid layout)
+- [x] Add refresh button with loading spinner
+- [x] Add icons to all cards and sections
+
+### Testing
+- [x] Write vitest tests for analytics helpers (8 tests)
+- [x] Test API endpoint structure validation
+- [x] Verify overview metrics calculations
+- [x] Verify platform breakdown totals
+- [x] Verify signup trends data format
+- [x] Verify email campaign stats structure
+- [x] Verify recent signups data format
+- [x] Test confirmation rate calculation
+- [x] Test data consistency across metrics
+- [x] All 36 tests passing (28 previous + 8 admin analytics)

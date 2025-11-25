@@ -1,6 +1,6 @@
 import { eq, and, isNotNull, lte } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, waitlistSignups, InsertWaitlistSignup, newsletterSubscriptions, InsertNewsletterSubscription } from "../drizzle/schema";
+import { InsertUser, users, waitlistSignups, InsertWaitlistSignup, newsletterSubscriptions, InsertNewsletterSubscription, emailSends, InsertEmailSend } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -238,7 +238,7 @@ export async function getNewsletterSubscriptionByEmail(email: string) {
  * ========================================
  */
 
-import { emailSends, InsertEmailSend } from "../drizzle/schema";
+// emailSends and InsertEmailSend are imported at the top of the file
 
 /**
  * Record that an email was sent
@@ -343,6 +343,242 @@ export async function getWaitlistMembersForDripEmail(
     return eligibleMembers;
   } catch (error: any) {
     console.error("[Database] Failed to get waitlist members for drip email:", error);
+    throw error;
+  }
+}
+
+/**
+ * ========================================
+ * ANALYTICS HELPERS
+ * ========================================
+ */
+
+import { count, sql } from "drizzle-orm";
+
+/**
+ * Get total number of waitlist signups
+ */
+export async function getTotalSignups(): Promise<number> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    const result = await db.select({ count: count() }).from(waitlistSignups);
+    return result[0]?.count || 0;
+  } catch (error: any) {
+    console.error("[Database] Failed to get total signups:", error);
+    throw error;
+  }
+}
+
+/**
+ * Get number of confirmed waitlist signups
+ */
+export async function getConfirmedSignups(): Promise<number> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    const result = await db
+      .select({ count: count() })
+      .from(waitlistSignups)
+      .where(isNotNull(waitlistSignups.confirmedAt));
+    return result[0]?.count || 0;
+  } catch (error: any) {
+    console.error("[Database] Failed to get confirmed signups:", error);
+    throw error;
+  }
+}
+
+/**
+ * Get platform breakdown (iOS, Android, Both)
+ */
+export async function getPlatformBreakdown(): Promise<{
+  ios: number;
+  android: number;
+  both: number;
+}> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    const results = await db
+      .select({
+        platform: waitlistSignups.platform,
+        count: count(),
+      })
+      .from(waitlistSignups)
+      .groupBy(waitlistSignups.platform);
+
+    const breakdown = { ios: 0, android: 0, both: 0 };
+    results.forEach((row) => {
+      if (row.platform === "ios") breakdown.ios = row.count;
+      else if (row.platform === "android") breakdown.android = row.count;
+      else if (row.platform === "both") breakdown.both = row.count;
+    });
+
+    return breakdown;
+  } catch (error: any) {
+    console.error("[Database] Failed to get platform breakdown:", error);
+    throw error;
+  }
+}
+
+/**
+ * Get signup trends over time (last 30 days)
+ */
+export async function getSignupTrends(): Promise<
+  Array<{ date: string; signups: number }>
+> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    // Get all signups from the last 30 days
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const allSignups = await db
+      .select({
+        createdAt: waitlistSignups.createdAt,
+      })
+      .from(waitlistSignups)
+      .where(sql`${waitlistSignups.createdAt} >= ${thirtyDaysAgo}`);
+
+    // Group by date in JavaScript (works for both MySQL and SQLite)
+    const dateMap = new Map<string, number>();
+    allSignups.forEach((signup) => {
+      const date = signup.createdAt.toISOString().split('T')[0]; // YYYY-MM-DD
+      dateMap.set(date, (dateMap.get(date) || 0) + 1);
+    });
+
+    // Convert to array and sort by date
+    const results = Array.from(dateMap.entries())
+      .map(([date, signups]) => ({ date, signups }))
+      .sort((a, b) => a.date.localeCompare(b.date));
+
+    return results;
+  } catch (error: any) {
+    console.error("[Database] Failed to get signup trends:", error);
+    throw error;
+  }
+}
+
+/**
+ * Get email campaign statistics
+ */
+export async function getEmailCampaignStats(): Promise<{
+  confirmation: { sent: number; failed: number };
+  day_1: { sent: number; failed: number };
+  day_3: { sent: number; failed: number };
+  day_7: { sent: number; failed: number };
+}> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    const results = await db
+      .select({
+        emailType: emailSends.emailType,
+        status: emailSends.status,
+        count: count(),
+      })
+      .from(emailSends)
+      .groupBy(emailSends.emailType, emailSends.status);
+
+    const stats = {
+      confirmation: { sent: 0, failed: 0 },
+      day_1: { sent: 0, failed: 0 },
+      day_3: { sent: 0, failed: 0 },
+      day_7: { sent: 0, failed: 0 },
+    };
+
+    results.forEach((row) => {
+      const emailType = row.emailType as keyof typeof stats;
+      if (stats[emailType]) {
+        if (row.status === "sent") {
+          stats[emailType].sent = row.count;
+        } else if (row.status === "failed") {
+          stats[emailType].failed = row.count;
+        }
+      }
+    });
+
+    return stats;
+  } catch (error: any) {
+    console.error("[Database] Failed to get email campaign stats:", error);
+    throw error;
+  }
+}
+
+/**
+ * Get recent waitlist signups (last 50)
+ */
+export async function getRecentSignups(): Promise<
+  Array<{
+    id: number;
+    email: string;
+    firstName: string | null;
+    platform: string;
+    newsletterOptin: number;
+    createdAt: Date;
+    confirmedAt: Date | null;
+  }>
+> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    const results = await db
+      .select({
+        id: waitlistSignups.id,
+        email: waitlistSignups.email,
+        firstName: waitlistSignups.firstName,
+        platform: waitlistSignups.platform,
+        newsletterOptin: waitlistSignups.newsletterOptin,
+        createdAt: waitlistSignups.createdAt,
+        confirmedAt: waitlistSignups.confirmedAt,
+      })
+      .from(waitlistSignups)
+      .orderBy(sql`${waitlistSignups.createdAt} DESC`)
+      .limit(50);
+
+    return results;
+  } catch (error: any) {
+    console.error("[Database] Failed to get recent signups:", error);
+    throw error;
+  }
+}
+
+/**
+ * Get total newsletter subscribers
+ */
+export async function getTotalNewsletterSubscribers(): Promise<number> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  try {
+    const result = await db
+      .select({ count: count() })
+      .from(newsletterSubscriptions)
+      .where(isNotNull(newsletterSubscriptions.subscribedAt));
+    return result[0]?.count || 0;
+  } catch (error: any) {
+    console.error("[Database] Failed to get newsletter subscribers:", error);
     throw error;
   }
 }

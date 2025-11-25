@@ -158,6 +158,50 @@ export const appRouter = router({
         }
       }),
   }),
+
+  admin: router({
+    analytics: publicProcedure.query(async () => {
+      const {
+        getTotalSignups,
+        getConfirmedSignups,
+        getPlatformBreakdown,
+        getSignupTrends,
+        getEmailCampaignStats,
+        getRecentSignups,
+        getTotalNewsletterSubscribers,
+      } = await import("./db");
+
+      try {
+        const [totalSignups, confirmedSignups, platformBreakdown, signupTrends, emailStats, recentSignups, newsletterSubscribers] =
+          await Promise.all([
+            getTotalSignups(),
+            getConfirmedSignups(),
+            getPlatformBreakdown(),
+            getSignupTrends(),
+            getEmailCampaignStats(),
+            getRecentSignups(),
+            getTotalNewsletterSubscribers(),
+          ]);
+
+        return {
+          overview: {
+            totalSignups,
+            confirmedSignups,
+            unconfirmedSignups: totalSignups - confirmedSignups,
+            newsletterSubscribers,
+            confirmationRate: totalSignups > 0 ? Math.round((confirmedSignups / totalSignups) * 100) : 0,
+          },
+          platformBreakdown,
+          signupTrends,
+          emailStats,
+          recentSignups,
+        };
+      } catch (error: any) {
+        console.error("Admin analytics error:", error);
+        throw new Error("Failed to fetch analytics data");
+      }
+    }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
