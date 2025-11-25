@@ -27,6 +27,7 @@ export interface PurchaseCheckResponse {
  * Create a Stripe Checkout session for book purchase
  */
 export async function createBookCheckoutSession(
+  referralCode?: string,
   userEmail?: string,
   userName?: string
 ): Promise<CheckoutSessionResponse> {
@@ -38,6 +39,7 @@ export async function createBookCheckoutSession(
     body: JSON.stringify({
       userEmail,
       userName,
+      referralCode,
     }),
   });
 

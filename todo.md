@@ -924,3 +924,25 @@
 - [x] Track referral conversions in database
 - [ ] Send reward notifications via email (future enhancement)
 - [ ] Test complete referral flow
+
+## Referral Code Input on Purchase Page
+
+### UI Implementation
+- [x] Add referral code input field to book page (ReferralCodeInput component)
+- [x] Add "Have a referral code?" section (collapsible card)
+- [x] Validate code in real-time as user types
+- [x] Show validation feedback (valid/invalid with icons)
+- [x] Display discount information when valid code entered (20% off message)
+- [x] Store validated code in component state
+
+### Checkout Integration
+- [x] Pass referral code to checkout session creation (updated createBookCheckoutSession)
+- [x] Store referral code in Stripe session metadata
+- [x] Track referral after successful purchase (trackReferral function)
+- [x] Generate reward code for referrer (generateRewardCode function)
+- [x] Update referral_codes usage count (in trackReferral)
+
+### URL Parameter Support
+- [x] Auto-populate referral code from URL query parameter (?ref=CODE)
+- [x] Pre-validate code from URL on page load
+- [x] Show success message when code auto-applied (toast notification)

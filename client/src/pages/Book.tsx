@@ -8,6 +8,7 @@ import SEO from "@/components/SEO";
 import { useLocation } from "wouter";
 import { createBookCheckoutSession } from "@/lib/bookApi";
 import { toast } from "sonner";
+import ReferralCodeInput from "@/components/ReferralCodeInput";
 
 export default function Book() {
   const [location] = useLocation();
@@ -17,10 +18,18 @@ export default function Book() {
     const urlParams = new URLSearchParams(window.location.search);
     const source = urlParams.get("source") || "direct";
     trackBookPageView(source);
+    
+    // Check for referral code in URL
+    const refCode = urlParams.get("ref");
+    if (refCode) {
+      setReferralCode(refCode);
+    }
   }, [location]);
 
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [isAmazonLoading, setIsAmazonLoading] = useState(false);
+  const [referralCode, setReferralCode] = useState<string | null>(null);
+  const [referralDiscount, setReferralDiscount] = useState<{ type: string; value: number } | null>(null);
 
   const handlePurchasePDF = async () => {
     setIsCheckoutLoading(true);
@@ -28,8 +37,8 @@ export default function Book() {
       // Track PDF purchase initiation
       trackBookPDFDownload("book_page");
       
-      // Create checkout session
-      const { url } = await createBookCheckoutSession();
+      // Create checkout session with referral code
+      const { url } = await createBookCheckoutSession(referralCode || undefined);
       
       // Redirect to Stripe Checkout
       window.location.href = url;
@@ -38,6 +47,11 @@ export default function Book() {
       toast.error(error.message || "Failed to start checkout. Please try again.");
       setIsCheckoutLoading(false);
     }
+  };
+
+  const handleReferralCodeValidated = (code: string, discount: { type: string; value: number }) => {
+    setReferralCode(code);
+    setReferralDiscount(discount);
   };
 
   const handleAmazonPurchase = () => {
@@ -141,6 +155,14 @@ export default function Book() {
                   )}
                   Buy Digital PDF - $9.99
                 </Button>
+              </div>
+
+              {/* Referral Code Input */}
+              <div className="pt-6">
+                <ReferralCodeInput
+                  initialCode={referralCode || undefined}
+                  onCodeValidated={handleReferralCodeValidated}
+                />
               </div>
 
               {/* Stats */}

@@ -26,7 +26,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
  */
 router.post("/create-checkout-session", async (req: AuthRequest, res) => {
   try {
-    const { userEmail, userName } = req.body;
+    const { userEmail, userName, referralCode } = req.body;
     const origin = req.headers.origin || "http://localhost:3000";
 
     // Create Stripe Checkout session
@@ -46,6 +46,7 @@ router.post("/create-checkout-session", async (req: AuthRequest, res) => {
         customer_email: userEmail || "",
         customer_name: userName || "",
         product_type: "book",
+        referral_code: referralCode || "",
       },
       success_url: `${origin}/book/purchase-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/book?canceled=true`,
@@ -97,12 +98,34 @@ router.get("/verify-purchase/:sessionId", async (req, res) => {
       };
       
       const [insertedPurchase] = await db.insert(bookPurchases).values(purchaseData);
+      const newPurchaseId = insertedPurchase.insertId;
+      
+      // Track referral if code was used
+      const usedReferralCode = session.metadata?.referral_code;
+      if (usedReferralCode) {
+        try {
+          const { trackReferral, generateRewardCode } = await import("../referral");
+          await trackReferral({
+            referralCode: usedReferralCode,
+            referredEmail: purchaseData.customerEmail,
+            referredPurchaseId: newPurchaseId,
+          });
+          console.log("[Book Purchase] Tracked referral:", usedReferralCode);
+          
+          // Generate reward code for the referrer
+          const rewardCode = await generateRewardCode(usedReferralCode);
+          console.log("[Book Purchase] Generated reward code:", rewardCode);
+        } catch (referralError) {
+          console.error("[Book Purchase] Failed to track referral:", referralError);
+          // Don't fail the purchase if referral tracking fails
+        }
+      }
       
       // Create referral code for this purchase
       try {
         const referralCode = await createReferralCodeForPurchase({
           userId: purchaseData.userId || undefined,
-          purchaseId: insertedPurchase.insertId,
+          purchaseId: newPurchaseId,
         });
         console.log("[Book Purchase] Created referral code:", referralCode);
       } catch (referralError) {
