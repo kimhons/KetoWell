@@ -1,14 +1,25 @@
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Download, BookOpen, Star, CheckCircle2, ExternalLink } from "lucide-react";
-// Analytics tracking will be handled by the app's built-in analytics
+import { trackBookPageView, trackBookPDFDownload, trackBookAmazonClick } from "@/lib/analytics";
 import SEO from "@/components/SEO";
+import { useLocation } from "wouter";
 
 export default function Book() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    // Track page view with source from URL params
+    const urlParams = new URLSearchParams(window.location.search);
+    const source = urlParams.get("source") || "direct";
+    trackBookPageView(source);
+  }, [location]);
+
   const handleDownloadPDF = () => {
     // Track download event
-    console.log("Book PDF download initiated");
+    trackBookPDFDownload("book_page");
     
     // Open PDF in new tab
     window.open("/ketowell-book.pdf", "_blank");
@@ -16,7 +27,7 @@ export default function Book() {
 
   const handleAmazonPreorder = () => {
     // Track pre-order click
-    console.log("Amazon pre-order link clicked");
+    trackBookAmazonClick("book_page");
     
     // Replace with actual Amazon link when available
     window.open("https://www.amazon.com/dp/[YOUR-ASIN]", "_blank");

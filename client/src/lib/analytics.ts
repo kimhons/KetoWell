@@ -175,6 +175,88 @@ export const trackScrollDepth = (depth: number) => {
   });
 };
 
+// Book promotion tracking
+
+export const trackBookBannerImpression = () => {
+  if (typeof window === "undefined" || !window.gtag) return;
+  
+  window.gtag("event", "book_banner_impression", {
+    event_category: "book_promotion",
+    event_label: "homepage_banner",
+  });
+};
+
+export const trackBookBannerClick = (source: string = "homepage") => {
+  if (typeof window === "undefined" || !window.gtag) return;
+  
+  window.gtag("event", "book_banner_click", {
+    event_category: "book_promotion",
+    event_label: source,
+    value: 1,
+  });
+  
+  // Track as conversion
+  window.gtag("event", "conversion", {
+    send_to: GA4_MEASUREMENT_ID,
+    event_category: "conversion",
+    event_label: "book_banner_cta",
+  });
+};
+
+export const trackBookBannerDismiss = () => {
+  if (typeof window === "undefined" || !window.gtag) return;
+  
+  window.gtag("event", "book_banner_dismiss", {
+    event_category: "book_promotion",
+    event_label: "homepage_banner",
+  });
+};
+
+export const trackBookPageView = (source?: string) => {
+  if (typeof window === "undefined" || !window.gtag) return;
+  
+  window.gtag("event", "book_page_view", {
+    event_category: "book_promotion",
+    event_label: source || "direct",
+  });
+};
+
+export const trackBookPDFDownload = (source: string = "book_page") => {
+  if (typeof window === "undefined" || !window.gtag) return;
+  
+  window.gtag("event", "book_pdf_download", {
+    event_category: "conversion",
+    event_label: source,
+    value: 1,
+  });
+  
+  // Track as high-value conversion
+  window.gtag("event", "conversion", {
+    send_to: GA4_MEASUREMENT_ID,
+    event_category: "conversion",
+    event_label: "book_download",
+    value: 5, // Assign value for conversion tracking
+  });
+};
+
+export const trackBookAmazonClick = (source: string = "book_page") => {
+  if (typeof window === "undefined" || !window.gtag) return;
+  
+  window.gtag("event", "book_amazon_click", {
+    event_category: "conversion",
+    event_label: source,
+    value: 1,
+  });
+  
+  // Track as conversion
+  window.gtag("event", "conversion", {
+    send_to: GA4_MEASUREMENT_ID,
+    event_category: "conversion",
+    event_label: "book_amazon_preorder",
+    value: 10, // Higher value for potential purchase
+  });
+};
+
 // Custom event tracking
 export const trackCustomEvent = (
   eventName: string,

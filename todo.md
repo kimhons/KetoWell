@@ -763,3 +763,18 @@
 - [x] Add gradient background with animated pattern
 - [x] Add stats (word count, free PDF, evidence-based)
 - [x] Add hover effects and transitions
+
+## Book Banner Conversion Tracking
+
+### Analytics Implementation
+- [x] Create analytics utility functions for book events (6 tracking functions)
+- [x] Track banner impressions (once per session via sessionStorage)
+- [x] Track banner CTA clicks (with conversion event)
+- [x] Track banner dismissals (with localStorage persistence)
+- [x] Track book page visits with source parameter
+- [x] Track PDF download attempts (value=5 conversion)
+- [x] Track Amazon pre-order clicks (value=10 conversion)
+- [x] Store banner dismissal state in localStorage
+- [x] Create comprehensive analytics documentation
+- [ ] Create admin dashboard view for book metrics (future enhancement)
+- [ ] Set up conversion funnel visualization in GA4 (manual setup required)

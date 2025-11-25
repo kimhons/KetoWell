@@ -1,10 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { X, BookOpen, Download, Sparkles } from "lucide-react";
 import { Link } from "wouter";
+import { trackBookBannerImpression, trackBookBannerClick, trackBookBannerDismiss } from "@/lib/analytics";
+
+const BANNER_DISMISSED_KEY = "book_banner_dismissed";
+const BANNER_IMPRESSION_KEY = "book_banner_impression_tracked";
 
 export default function BookPromoBanner() {
   const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    // Check if banner was previously dismissed
+    const wasDismissed = localStorage.getItem(BANNER_DISMISSED_KEY);
+    if (wasDismissed === "true") {
+      setIsVisible(false);
+      return;
+    }
+
+    // Track impression only once per session
+    const impressionTracked = sessionStorage.getItem(BANNER_IMPRESSION_KEY);
+    if (!impressionTracked) {
+      trackBookBannerImpression();
+      sessionStorage.setItem(BANNER_IMPRESSION_KEY, "true");
+    }
+  }, []);
+
+  const handleDismiss = () => {
+    setIsVisible(false);
+    localStorage.setItem(BANNER_DISMISSED_KEY, "true");
+    trackBookBannerDismiss();
+  };
+
+  const handleBannerClick = () => {
+    trackBookBannerClick("homepage");
+  };
 
   if (!isVisible) return null;
 
@@ -70,7 +100,7 @@ export default function BookPromoBanner() {
 
             {/* CTA Button */}
             <div className="flex-shrink-0">
-              <Link href="/book">
+              <Link href="/book" onClick={handleBannerClick}>
                 <Button
                   size="lg"
                   className="bg-white text-blue-600 hover:bg-white/90 font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all"
@@ -84,7 +114,7 @@ export default function BookPromoBanner() {
 
           {/* Close Button */}
           <button
-            onClick={() => setIsVisible(false)}
+            onClick={handleDismiss}
             className="absolute top-2 right-2 md:relative md:top-0 md:right-0 flex-shrink-0 p-2 hover:bg-white/10 rounded-full transition-colors"
             aria-label="Close banner"
           >
