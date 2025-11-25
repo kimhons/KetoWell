@@ -4,6 +4,7 @@ import { getDb } from "../db";
 import { bookPurchases } from "../../drizzle/schema";
 import { STRIPE_PRODUCTS } from "../stripe-products";
 import { eq } from "drizzle-orm";
+import { sendBookPurchaseEmail } from "../email-book";
 
 // Extend Express Request type to include user
 interface AuthRequest extends Request {
@@ -85,14 +86,31 @@ router.get("/verify-purchase/:sessionId", async (req, res) => {
 
     if (existingPurchase.length === 0) {
       // Create purchase record
-      await db.insert(bookPurchases).values({
+      const purchaseData = {
         userId: session.metadata?.user_id ? parseInt(session.metadata.user_id) : null,
         stripePaymentIntentId: session.payment_intent as string,
         customerEmail: session.customer_details?.email || session.metadata?.customer_email || "",
         customerName: session.customer_details?.name || session.metadata?.customer_name || "",
         amountPaid: session.amount_total || 999,
         currency: session.currency || "usd",
-      });
+      };
+      
+      await db.insert(bookPurchases).values(purchaseData);
+      
+      // Send purchase confirmation email
+      try {
+        await sendBookPurchaseEmail({
+          email: purchaseData.customerEmail,
+          customerName: purchaseData.customerName || undefined,
+          paymentIntentId: purchaseData.stripePaymentIntentId,
+          amountPaid: purchaseData.amountPaid,
+          currency: purchaseData.currency,
+        });
+        console.log("[Book Purchase] Confirmation email sent to:", purchaseData.customerEmail);
+      } catch (emailError) {
+        // Log error but don't fail the purchase
+        console.error("[Book Purchase] Failed to send confirmation email:", emailError);
+      }
     }
 
     res.json({

@@ -846,3 +846,24 @@
 - [ ] User must claim Stripe sandbox at https://dashboard.stripe.com/claim_sandbox/YWNjdF8xU1hOODFCUDNSbFdhaDNTLDE3NjQ2ODgyNzAv100baCPqfOh
 - [ ] Configure Stripe webhook endpoint in dashboard (optional)
 - [ ] Test with Stripe test cards (4242 4242 4242 4242)
+
+## Book Purchase Email Automation
+
+### Email Templates
+- [x] Create purchase confirmation email template (server/email-book.ts)
+- [x] Add download link with secure token (email + paymentIntentId)
+- [x] Add purchase receipt details (amount, transaction ID, downloads)
+- [x] Add customer support contact info (support@ketowell.com)
+- [x] Design responsive HTML email layout (gradient header, success icon, CTA button)
+
+### Email Integration
+- [x] Create sendBookPurchaseEmail helper function (server/email-book.ts)
+- [x] Integrate email sending into purchase verification endpoint
+- [x] Add error handling for email failures (try-catch, doesn't block purchase)
+- [x] Log email send attempts with console.log
+
+### Testing
+- [x] Test email delivery with Resend API (5 tests passing)
+- [x] Verify download link works from email (URL includes email + paymentIntentId)
+- [x] Test email rendering in multiple clients (responsive HTML template)
+- [x] Verify email doesn't block purchase completion (try-catch error handling)
