@@ -17,6 +17,7 @@ import {
 import { APP_TITLE } from "@/const";
 import SEO from "@/components/SEO";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import EvidenceMatrix from "@/components/EvidenceMatrix";
 
 export default function Research() {
   const [expandedStudy, setExpandedStudy] = useState<string | null>(null);
@@ -107,12 +108,220 @@ export default function Research() {
           <div className="container">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="mb-4">Evidence Strength Matrix</h2>
+                <h2 className="mb-4">Interactive Evidence Matrix</h2>
                 <p className="text-muted-foreground text-lg">
-                  Combined confidence levels from comprehensive research synthesis
+                  Filter by condition and explore detailed research findings with star ratings
+                </p>
+              </div>
+              <EvidenceMatrix />
+            </div>
+          </div>
+        </section>
+
+        {/* Mechanism of Action */}
+        <section className="py-20 bg-muted/30">
+          <div className="container">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <Badge className="mb-4">How It Works</Badge>
+                <h2 className="mb-4">Mechanism of Ketosis</h2>
+                <p className="text-muted-foreground text-lg">
+                  Understanding the metabolic shift from glucose to ketones
                 </p>
               </div>
 
+              <div className="grid md:grid-cols-2 gap-8 mb-12">
+                <Card className="p-8">
+                  <h3 className="mb-4 flex items-center gap-2">
+                    <span className="text-2xl">🍞</span>
+                    Normal Metabolism
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                        <span className="text-xl">🍞</span>
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-semibold">Carb Intake</p>
+                        <p className="text-sm text-muted-foreground">Bread, pasta, sugar</p>
+                      </div>
+                    </div>
+                    <div className="text-center text-2xl text-muted-foreground">↓</div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                        <span className="text-xl">🩸</span>
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-semibold">Glucose in Blood</p>
+                        <p className="text-sm text-muted-foreground">Primary fuel source</p>
+                      </div>
+                    </div>
+                    <div className="text-center text-2xl text-muted-foreground">↓</div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                        <span className="text-xl">⚡</span>
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-semibold">Energy (ATP)</p>
+                        <p className="text-sm text-muted-foreground">Cellular energy</p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-8 border-2 border-primary">
+                  <h3 className="mb-4 flex items-center gap-2">
+                    <span className="text-2xl">🥑</span>
+                    Ketogenic Metabolism
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <span className="text-xl">🥑</span>
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-semibold">Fat Intake</p>
+                        <p className="text-sm text-muted-foreground">Avocado, butter, oils</p>
+                      </div>
+                    </div>
+                    <div className="text-center text-2xl text-primary">↓</div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <span className="text-xl">🧬</span>
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-semibold">Ketones (BHB)</p>
+                        <p className="text-sm text-muted-foreground">Alternative fuel</p>
+                      </div>
+                    </div>
+                    <div className="text-center text-2xl text-primary">↓</div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <span className="text-xl">⚡</span>
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-semibold">Energy (ATP)</p>
+                        <p className="text-sm text-muted-foreground">More efficient fuel</p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+
+              <Card className="p-6 bg-primary/5 border-primary/20">
+                <h4 className="font-semibold mb-3">Key Benefits of Ketone Metabolism</h4>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-0.5">✓</span>
+                    <span><strong>Stable Energy:</strong> No blood sugar spikes and crashes</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-0.5">✓</span>
+                    <span><strong>Mental Clarity:</strong> Ketones cross blood-brain barrier efficiently</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-0.5">✓</span>
+                    <span><strong>Fat Burning:</strong> Direct access to body's fat stores for fuel</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-0.5">✓</span>
+                    <span><strong>Reduced Inflammation:</strong> Ketones have anti-inflammatory properties</span>
+                  </li>
+                </ul>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Safety Information */}
+        <section className="py-20 border-t">
+          <div className="container">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <Badge variant="destructive" className="mb-4">Important Safety Information</Badge>
+                <h2 className="mb-4">Who Should Consult a Doctor First</h2>
+                <p className="text-muted-foreground text-lg">
+                  Ketogenic diets are powerful metabolic interventions. Certain groups require medical supervision.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <Card className="p-6 border-amber-500/50 bg-amber-500/5">
+                  <h4 className="font-semibold mb-4 flex items-center gap-2">
+                    <span className="text-xl">⚠️</span>
+                    Consult Doctor Before Starting
+                  </h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2">
+                      <span className="text-amber-600 mt-0.5">•</span>
+                      <span>People taking SGLT2 inhibitors (DKA risk)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-amber-600 mt-0.5">•</span>
+                      <span>Type 1 Diabetics (requires careful monitoring)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-amber-600 mt-0.5">•</span>
+                      <span>Pregnant or breastfeeding women</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-amber-600 mt-0.5">•</span>
+                      <span>Those with kidney or liver disease</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-amber-600 mt-0.5">•</span>
+                      <span>People with history of eating disorders</span>
+                    </li>
+                  </ul>
+                </Card>
+
+                <Card className="p-6 border-destructive/50 bg-destructive/5">
+                  <h4 className="font-semibold mb-4 flex items-center gap-2">
+                    <span className="text-xl">🚫</span>
+                    Absolute Contraindications
+                  </h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2">
+                      <span className="text-destructive mt-0.5">•</span>
+                      <span>Fatty acid oxidation disorders</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-destructive mt-0.5">•</span>
+                      <span>Primary carnitine deficiency</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-destructive mt-0.5">•</span>
+                      <span>Acute porphyria</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-destructive mt-0.5">•</span>
+                      <span>Pyruvate kinase deficiency</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-destructive mt-0.5">•</span>
+                      <span>Severe pancreatitis</span>
+                    </li>
+                  </ul>
+                  <p className="text-xs text-muted-foreground mt-4">
+                    KetoWell screens for these conditions during onboarding
+                  </p>
+                </Card>
+              </div>
+
+              <Card className="p-6 bg-muted/50">
+                <h4 className="font-semibold mb-3">Medical Disclaimer</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  KetoWell is designed for educational and tracking purposes only. It is not intended to diagnose, treat, cure, or prevent any disease or medical condition. Always consult with a qualified healthcare provider before starting any new diet or making changes to your current diet, especially if you have diabetes, take medications, or have any medical conditions. Never discontinue prescribed medications without consulting your doctor.
+                </p>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Keep existing research library section below */}
+        <section className="py-20 bg-muted/30">
+          <div className="container">
+            <div className="max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-6">
                 <Card className="p-6 bg-secondary/5 border-secondary/20">
                   <div className="flex items-center justify-between mb-4">

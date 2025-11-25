@@ -689,3 +689,42 @@
 - [ ] Create /about page with mission, team, press
 - [ ] Add medical disclaimer modal/page
 - [ ] Implement footer with all navigation links
+
+## Science Page Enhancement
+
+### Evidence Matrix
+- [x] Create EvidenceMatrix component with filtering
+- [x] Add evidence strength star ratings (1-5 stars)
+- [x] Include key findings and metrics for each condition (8 conditions)
+- [x] Add participant counts and study references
+- [x] Implement filter buttons (All, T2D, Weight, Cardio, Neuro, Cancer, Other)
+- [x] Make rows clickable to expand details
+- [x] Add expandable detail sections with full research descriptions
+- [x] Include color-coded evidence badges (VERY STRONG, STRONG, MODERATE, EMERGING)
+
+### Page Structure
+- [x] Enhanced Research page component (/research route)
+- [x] Hero section with research statistics already exists
+- [x] Integrated evidence matrix table
+- [x] Add mechanism of action explainer section
+- [x] Add safety information with warnings
+- [x] Research library section already exists
+
+### Mechanism Explainer
+- [x] Design visual diagram showing ketosis process
+- [x] Show carb metabolism vs fat metabolism (side-by-side comparison)
+- [x] Include educational content with icons and flow arrows
+- [x] Add benefits list (stable energy, mental clarity, fat burning, reduced inflammation)
+
+### Safety Information
+- [x] List who should consult doctor first (5 categories)
+- [x] Display absolute contraindications with warnings (5 conditions)
+- [x] Add medical disclaimer
+- [x] Color-coded warning cards (amber for caution, red for contraindications)
+- [x] Note that KetoWell screens for these during onboarding
+
+### Research Library
+- [x] Research paper cards already exist in Research page
+- [x] Filtering by category already implemented
+- [x] Paper metadata included (journal, year, participants)
+- [x] Links to full papers already present
