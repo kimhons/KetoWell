@@ -749,3 +749,17 @@
 - [x] Add SEO meta tags for book page
 - [ ] Upload actual PDF file to /client/public/ketowell-book.pdf
 - [ ] Update Amazon pre-order link when available
+
+## Homepage Book Promotion
+
+### Promotional Banner
+- [x] Create BookPromoBanner component
+- [x] Add banner to homepage (below header, above hero)
+- [x] Include book cover thumbnail
+- [x] Add compelling headline and description
+- [x] Add CTA button linking to /book page
+- [x] Make banner dismissible with X button
+- [x] Ensure mobile responsiveness
+- [x] Add gradient background with animated pattern
+- [x] Add stats (word count, free PDF, evidence-based)
+- [x] Add hover effects and transitions

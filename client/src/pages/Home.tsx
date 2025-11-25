@@ -27,6 +27,7 @@ import DrKetoneDemo from "@/components/DrKetoneDemo";
 import Testimonials from "@/components/Testimonials";
 import EvidenceShowcase from "@/components/EvidenceShowcase";
 import TrustIndicators from "@/components/TrustIndicators";
+import BookPromoBanner from "@/components/BookPromoBanner";
 import { useState } from "react";
 
 export default function Home() {
@@ -80,6 +81,9 @@ export default function Home() {
           </Button>
         </div>
       </header>
+
+      {/* Book Promotion Banner */}
+      <BookPromoBanner />
 
       <main className="flex-1">
         {/* Hero Section */}
