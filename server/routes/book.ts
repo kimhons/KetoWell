@@ -5,6 +5,7 @@ import { bookPurchases } from "../../drizzle/schema";
 import { STRIPE_PRODUCTS } from "../stripe-products";
 import { eq } from "drizzle-orm";
 import { sendBookPurchaseEmail } from "../email-book";
+import { createReferralCodeForPurchase } from "../referral";
 
 // Extend Express Request type to include user
 interface AuthRequest extends Request {
@@ -95,7 +96,19 @@ router.get("/verify-purchase/:sessionId", async (req, res) => {
         currency: session.currency || "usd",
       };
       
-      await db.insert(bookPurchases).values(purchaseData);
+      const [insertedPurchase] = await db.insert(bookPurchases).values(purchaseData);
+      
+      // Create referral code for this purchase
+      try {
+        const referralCode = await createReferralCodeForPurchase({
+          userId: purchaseData.userId || undefined,
+          purchaseId: insertedPurchase.insertId,
+        });
+        console.log("[Book Purchase] Created referral code:", referralCode);
+      } catch (referralError) {
+        console.error("[Book Purchase] Failed to create referral code:", referralError);
+        // Don't fail the purchase if referral creation fails
+      }
       
       // Send purchase confirmation email
       try {

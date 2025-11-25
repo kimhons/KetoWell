@@ -889,3 +889,38 @@
 - [x] Write Facebook message with book benefits (200+ studies, comprehensive guide)
 - [x] Write LinkedIn professional message (evidence-based, healthcare professionals)
 - [x] Include book URL and hashtags in all messages
+
+## Referral Incentive Program
+
+### Database Schema
+- [x] Create referral_codes table (code, user_id, discount_type, discount_value, expires_at)
+- [x] Create referral_tracking table (referral_code, referred_email, purchase_id, created_at)
+- [x] Push database schema changes (migration 0005_elite_husk.sql)
+- [x] Create indexes for efficient lookups
+
+### Backend Implementation
+- [x] Create API endpoint to generate unique referral code (GET /api/referral/code/:purchaseId)
+- [x] Create API endpoint to validate referral code (POST /api/referral/validate)
+- [x] Create API endpoint to track referral usage (POST /api/referral/track)
+- [x] Create API endpoint to get referral stats (GET /api/referral/stats/:email)
+- [x] Generate referral code automatically after book purchase
+- [x] Create referral helper functions (server/referral.ts)
+- [ ] Send email notification with reward code (future enhancement)
+- [ ] Integrate with Stripe for discount code creation (future enhancement)
+
+### Frontend Implementation
+- [x] Add referral code display to purchase success page (ReferralRewards component)
+- [x] Update social share buttons to include referral code in URLs
+- [x] Create referral dashboard to show referral stats (ReferralRewards component)
+- [x] Add "Your Referral Rewards" section with code, stats, and rewards
+- [x] Display earned discount codes
+- [x] Create referral API client functions (client/src/lib/referralApi.ts)
+
+### Incentive Structure
+- [x] Define reward: 20% off KetoWell Premium for 3 months
+- [x] Set referral code format (BOOKREF-XXXXX)
+- [x] Set expiration period (90 days)
+- [x] Set usage limit (10 referrals per code)
+- [x] Track referral conversions in database
+- [ ] Send reward notifications via email (future enhancement)
+- [ ] Test complete referral flow

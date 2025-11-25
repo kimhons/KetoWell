@@ -100,3 +100,55 @@ export const bookPurchases = mysqlTable("book_purchases", {
 
 export type BookPurchase = typeof bookPurchases.$inferSelect;
 export type InsertBookPurchase = typeof bookPurchases.$inferInsert;
+
+/**
+ * Referral codes for book purchase incentives
+ * Customers get a unique code to share for rewards
+ */
+export const referralCodes = mysqlTable("referral_codes", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Unique referral code (e.g., BOOKREF-ABC123) */
+  code: varchar("code", { length: 50 }).notNull().unique(),
+  /** User who owns this referral code */
+  userId: int("user_id"),
+  /** Book purchase that generated this code */
+  purchaseId: int("purchase_id"),
+  /** Type of discount: percentage or fixed */
+  discountType: mysqlEnum("discount_type", ["percentage", "fixed"]).notNull(),
+  /** Discount value: 20 for 20% off, or amount in cents for fixed */
+  discountValue: int("discount_value").notNull(),
+  /** How many times this code can be used */
+  usageLimit: int("usage_limit").notNull().default(1),
+  /** How many times this code has been used */
+  usageCount: int("usage_count").notNull().default(0),
+  /** Expiration timestamp */
+  expiresAt: timestamp("expires_at"),
+  /** Creation timestamp */
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type ReferralCode = typeof referralCodes.$inferSelect;
+export type InsertReferralCode = typeof referralCodes.$inferInsert;
+
+/**
+ * Track referral usage and conversions
+ * Records when someone uses a referral code to purchase
+ */
+export const referralTracking = mysqlTable("referral_tracking", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Referral code that was used */
+  referralCode: varchar("referral_code", { length: 50 }).notNull(),
+  /** Email of the person who was referred */
+  referredEmail: varchar("referred_email", { length: 320 }).notNull(),
+  /** Purchase made by the referred person */
+  referredPurchaseId: int("referred_purchase_id"),
+  /** Reward code earned by the referrer (for app discount) */
+  rewardCode: varchar("reward_code", { length: 50 }),
+  /** Whether reward email has been sent */
+  rewardSent: int("reward_sent").notNull().default(0), // 0 = false, 1 = true
+  /** When the referral was tracked */
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type ReferralTracking = typeof referralTracking.$inferSelect;
+export type InsertReferralTracking = typeof referralTracking.$inferInsert;

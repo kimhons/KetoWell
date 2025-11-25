@@ -8,6 +8,7 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import bookRoutes from "../routes/book";
+import referralRoutes from "../routes/referral";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -38,6 +39,8 @@ async function startServer() {
   registerOAuthRoutes(app);
   // Book purchase routes
   app.use("/api/book", bookRoutes);
+  // Referral routes
+  app.use("/api/referral", referralRoutes);
   // tRPC API
   app.use(
     "/api/trpc",

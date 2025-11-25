@@ -10,6 +10,7 @@ interface SocialShareButtonsProps {
   url?: string;
   hashtags?: string[];
   source?: string; // For analytics tracking
+  referralCode?: string; // Optional referral code to include in shared URLs
 }
 
 export default function SocialShareButtons({
@@ -18,11 +19,15 @@ export default function SocialShareButtons({
   url,
   hashtags = ["KetoWell", "KetoLife", "MetabolicHealth"],
   source = "book_purchase",
+  referralCode,
 }: SocialShareButtonsProps) {
   const [copied, setCopied] = useState(false);
   
-  // Use current page URL if not provided
-  const shareUrl = url || (typeof window !== "undefined" ? `${window.location.origin}/book` : "https://ketowell.com/book");
+  // Use current page URL if not provided, add referral code if available
+  let shareUrl = url || (typeof window !== "undefined" ? `${window.location.origin}/book` : "https://ketowell.com/book");
+  if (referralCode) {
+    shareUrl += `?ref=${referralCode}`;
+  }
   
   // Pre-populated messages for each platform
   const messages = {

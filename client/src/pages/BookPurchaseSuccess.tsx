@@ -7,12 +7,17 @@ import { Link } from "wouter";
 import { verifyBookPurchase } from "@/lib/bookApi";
 import { toast } from "sonner";
 import SocialShareButtons from "@/components/SocialShareButtons";
+import ReferralRewards from "@/components/ReferralRewards";
+import { getReferralStatsByEmail } from "@/lib/referralApi";
+import type { ReferralStats } from "@/lib/referralApi";
 
 export default function BookPurchaseSuccess() {
   const [isVerifying, setIsVerifying] = useState(true);
   const [purchaseVerified, setPurchaseVerified] = useState(false);
   const [customerEmail, setCustomerEmail] = useState("");
   const [customerName, setCustomerName] = useState("");
+  const [referralStats, setReferralStats] = useState<ReferralStats | null>(null);
+  const [loadingReferral, setLoadingReferral] = useState(true);
 
   useEffect(() => {
     const verifyPurchase = async () => {
@@ -31,9 +36,24 @@ export default function BookPurchaseSuccess() {
         
         if (result.success) {
           setPurchaseVerified(true);
-          setCustomerEmail(result.customerEmail || "");
+          const email = result.customerEmail || "";
+          setCustomerEmail(email);
           setCustomerName(result.customerName || "");
           toast.success("Purchase verified! Check your email for the download link.");
+          
+          // Load referral stats
+          if (email) {
+            try {
+              const stats = await getReferralStatsByEmail(email);
+              setReferralStats(stats);
+            } catch (error) {
+              console.error("Failed to load referral stats:", error);
+            } finally {
+              setLoadingReferral(false);
+            }
+          } else {
+            setLoadingReferral(false);
+          }
         } else {
           toast.error("Failed to verify purchase");
         }
@@ -151,6 +171,11 @@ export default function BookPurchaseSuccess() {
             </CardContent>
           </Card>
 
+          {/* Referral Rewards */}
+          <div className="mb-8">
+            <ReferralRewards referralStats={referralStats} loading={loadingReferral} />
+          </div>
+
           {/* Social Sharing */}
           <Card className="mb-8">
             <CardContent className="pt-6">
@@ -158,7 +183,10 @@ export default function BookPurchaseSuccess() {
               <p className="text-muted-foreground mb-6">
                 Help others discover evidence-based ketogenic health information! Share your purchase on social media and inspire your network.
               </p>
-              <SocialShareButtons source="book_purchase_success" />
+              <SocialShareButtons 
+                source="book_purchase_success" 
+                referralCode={referralStats?.code}
+              />
             </CardContent>
           </Card>
 
