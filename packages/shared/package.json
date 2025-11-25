@@ -1,0 +1,29 @@
+{
+  "name": "@ketowell/shared",
+  "version": "1.0.0",
+  "description": "Shared types, constants, and utilities for KetoWell web and mobile apps",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./types": "./dist/types/index.js",
+    "./constants": "./dist/constants/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "ketowell",
+    "shared",
+    "types"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}

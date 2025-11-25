@@ -946,3 +946,29 @@
 - [x] Auto-populate referral code from URL query parameter (?ref=CODE)
 - [x] Pre-validate code from URL on page load
 - [x] Show success message when code auto-applied (toast notification)
+
+## Documentation
+
+### README.md Updates
+- [x] Add project overview and description
+- [x] Document Stripe integration setup and configuration
+- [x] Document referral system architecture and flow
+- [x] Add API endpoint documentation
+- [x] Add environment variables reference
+- [x] Add deployment instructions
+- [x] Add development setup guide
+- [x] Commit and push to GitHub
+
+## Monorepo Restructuring
+
+### Repository Organization
+- [x] Design monorepo structure for web + mobile (see docs/MONOREPO_PLAN.md)
+- [x] Create /packages directory for all applications
+- [x] Move web app to /packages/web
+- [x] Create /packages/mobile placeholder for Flutter app
+- [x] Create /packages/shared for shared code
+- [x] Update package.json workspace configuration (root + pnpm-workspace.yaml)
+- [x] Update build scripts and paths
+- [x] Update README.md with new structure
+- [x] Test that web app still works after restructuring (confirmed running)
+- [ ] Commit and push to GitHub
