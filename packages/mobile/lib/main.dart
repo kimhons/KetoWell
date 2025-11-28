@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/theme/app_theme.dart';
 import 'core/constants/app_constants.dart';
+import 'core/storage/storage_service.dart';
+import 'core/storage/shared_prefs_storage_service.dart';
+import 'core/navigation/app_router.dart';
+import 'core/utils/logger.dart';
+
+// Global services
+late final StorageService storageService;
+late final AppRouter appRouter;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize storage service
+  storageService = SharedPrefsStorageService();
+  await storageService.init();
+  AppLogger.general.info('Storage service initialized');
+  
+  // Initialize router
+  appRouter = AppRouter(storage: storageService);
+  AppLogger.general.info('Router initialized');
   
   // Set preferred orientations
   await SystemChrome.setPreferredOrientations([
@@ -23,6 +39,7 @@ void main() async {
     ),
   );
   
+  AppLogger.general.info('Starting KetoWell app');
   runApp(const KetoWellApp());
 }
 
@@ -31,13 +48,13 @@ class KetoWellApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.light,
-      home: const SplashScreen(),
+      routerConfig: appRouter.router,
     );
   }
 }

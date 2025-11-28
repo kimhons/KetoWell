@@ -1,6 +1,6 @@
 # KetoWell Mobile App - Development TODO
 
-## Phase 1: Core Infrastructure 🚧
+## Phase 1: Core Infrastructure ✅
 - [x] Project structure created
 - [x] Design system implemented
 - [x] Dependencies configured
@@ -9,10 +9,11 @@
 - [x] API client with Dio
 - [x] Storage service interface
 - [x] SharedPreferences storage implementation
-- [ ] Token refresh interceptor
-- [ ] Network connectivity monitoring
-- [ ] Navigation with GoRouter
-- [ ] Logging service
+- [x] Token refresh interceptor with tests
+- [x] Network connectivity monitoring with tests
+- [x] Navigation with GoRouter (routes + protected routes)
+- [x] Logging service with tests
+- [x] Main app integration with all services
 
 ## Phase 2: Shared UI Components
 - [ ] Custom buttons (primary, secondary, outline, text)
