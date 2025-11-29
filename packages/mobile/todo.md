@@ -20,10 +20,11 @@
 - [x] Custom text inputs (text, email, password, number, phone, multiline) with 18 tests
 - [x] Component documentation (README.md)
 - [x] Custom cards (stat card, food card, progress card) with 37 tests
+- [x] Bottom navigation bar with 12 tests
+- [x] App bar (standard and sliver) with 20 tests
 - [ ] Loading states (shimmer, spinner, skeleton)
 - [ ] Empty states
 - [ ] Error states
-- [ ] Bottom navigation bar
 - [ ] Custom app bar
 - [ ] Modal bottom sheets
 - [ ] Dialogs (alert, confirm, custom)
