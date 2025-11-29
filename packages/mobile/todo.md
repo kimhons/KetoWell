@@ -160,3 +160,19 @@
 - [ ] Beta testing (TestFlight, Firebase App Distribution)
 - [ ] App Store submission
 - [ ] Google Play submission
+
+## Phase 3: Authentication System 🚧
+- [x] User model (User, AuthTokens, SignUpRequest, LoginRequest, AuthResponse)
+- [x] Auth repository with API integration
+- [x] Auth BLoC (state, events, bloc)
+- [x] Sign-up screen with full validation
+- [ ] Login screen with validation
+- [ ] JWT token management (partial - needs testing)
+- [ ] Password reset flow
+- [ ] Email verification
+- [x] Auth state persistence (via storage)
+- [ ] Protected route handling
+- [ ] Tests for auth models
+- [ ] Tests for auth repository
+- [ ] Tests for auth BLoC
+- [ ] Tests for sign-up screen
