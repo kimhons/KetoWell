@@ -15,9 +15,10 @@
 - [x] Logging service with tests
 - [x] Main app integration with all services
 
-## Phase 2: Shared UI Components
-- [ ] Custom buttons (primary, secondary, outline, text)
-- [ ] Custom text inputs (text, number, password, search)
+## Phase 2: Shared UI Components 🚧
+- [x] Custom buttons (primary, secondary, outline, text) with 13 tests
+- [x] Custom text inputs (text, email, password, number, phone, multiline) with 18 tests
+- [x] Component documentation (README.md)
 - [ ] Custom cards (stat card, food card, progress card)
 - [ ] Loading states (shimmer, spinner, skeleton)
 - [ ] Empty states
