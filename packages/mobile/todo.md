@@ -19,7 +19,7 @@
 - [x] Custom buttons (primary, secondary, outline, text) with 13 tests
 - [x] Custom text inputs (text, email, password, number, phone, multiline) with 18 tests
 - [x] Component documentation (README.md)
-- [ ] Custom cards (stat card, food card, progress card)
+- [x] Custom cards (stat card, food card, progress card) with 37 tests
 - [ ] Loading states (shimmer, spinner, skeleton)
 - [ ] Empty states
 - [ ] Error states
