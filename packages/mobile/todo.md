@@ -166,7 +166,7 @@
 - [x] Auth repository with API integration
 - [x] Auth BLoC (state, events, bloc)
 - [x] Sign-up screen with full validation
-- [ ] Login screen with validation
+- [x] Login screen with validation
 - [ ] JWT token management (partial - needs testing)
 - [ ] Password reset flow
 - [ ] Email verification
