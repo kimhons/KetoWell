@@ -184,10 +184,10 @@
 - [x] Onboarding BLoC (state management - 12 events, 5 states)
 - [x] Welcome screen (splash + intro)
 - [ ] Medical screening screens (5 screens)
-  - [ ] Current medications
-  - [ ] SGLT2 inhibitor check
+  - [x] Current medications
+  - [x] SGLT2 inhibitor check
   - [ ] Medical conditions
-  - [ ] Contraindication warning
+  - [x] Contraindication warning
   - [ ] Physician clearance
 - [ ] Goal setting screens (3 screens)
   - [ ] Primary goal selection
