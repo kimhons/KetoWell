@@ -181,7 +181,7 @@
 ## Phase 4: Onboarding Flow 🚧
 - [x] Onboarding models (user profile, medical data, goals)
 - [ ] Onboarding repository (API integration)
-- [ ] Onboarding BLoC (state management)
+- [x] Onboarding BLoC (state management - 12 events, 5 states)
 - [x] Welcome screen (splash + intro)
 - [ ] Medical screening screens (5 screens)
   - [ ] Current medications
