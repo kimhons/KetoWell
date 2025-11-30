@@ -192,9 +192,9 @@
 - [x] Goal setting screens (2 screens) - Target/Timeline combined
   - [x] Primary goal selection
   - [x] Target weight/metrics with timeline
-- [ ] Baseline measurements (2 screens)
-  - [ ] Weight, height, age
-  - [ ] Initial ketone reading
+- [x] Baseline measurements (2 screens)
+  - [x] Weight, height, age, gender, activity level
+  - [x] Initial ketone reading (optional)
 - [ ] Education screens (3 screens)
   - [ ] Electrolyte importance
   - [ ] Keto flu expectations
