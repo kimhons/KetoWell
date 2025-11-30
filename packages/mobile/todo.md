@@ -189,10 +189,9 @@
   - [x] Medical conditions
   - [x] Contraindication warning
   - [x] Physician clearance
-- [ ] Goal setting screens (3 screens)
-  - [ ] Primary goal selection
-  - [ ] Target weight/metrics
-  - [ ] Timeline preferences
+- [x] Goal setting screens (2 screens) - Target/Timeline combined
+  - [x] Primary goal selection
+  - [x] Target weight/metrics with timeline
 - [ ] Baseline measurements (2 screens)
   - [ ] Weight, height, age
   - [ ] Initial ketone reading
