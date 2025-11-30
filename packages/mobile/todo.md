@@ -177,3 +177,29 @@
 - [x] Tests for auth BLoC (11 tests)
 - [ ] Tests for sign-up screen
 - [ ] Tests for login screen
+
+## Phase 4: Onboarding Flow 🚧
+- [x] Onboarding models (user profile, medical data, goals)
+- [ ] Onboarding repository (API integration)
+- [ ] Onboarding BLoC (state management)
+- [x] Welcome screen (splash + intro)
+- [ ] Medical screening screens (5 screens)
+  - [ ] Current medications
+  - [ ] SGLT2 inhibitor check
+  - [ ] Medical conditions
+  - [ ] Contraindication warning
+  - [ ] Physician clearance
+- [ ] Goal setting screens (3 screens)
+  - [ ] Primary goal selection
+  - [ ] Target weight/metrics
+  - [ ] Timeline preferences
+- [ ] Baseline measurements (2 screens)
+  - [ ] Weight, height, age
+  - [ ] Initial ketone reading
+- [ ] Education screens (3 screens)
+  - [ ] Electrolyte importance
+  - [ ] Keto flu expectations
+  - [ ] Safety guidelines
+- [ ] Consent screen
+- [ ] Onboarding completion
+- [ ] Tests for onboarding
