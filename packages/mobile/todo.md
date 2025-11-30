@@ -172,7 +172,8 @@
 - [ ] Email verification
 - [x] Auth state persistence (via storage)
 - [ ] Protected route handling
-- [ ] Tests for auth models
+- [x] Tests for auth models (25 tests)
 - [ ] Tests for auth repository
-- [ ] Tests for auth BLoC
+- [x] Tests for auth BLoC (11 tests)
 - [ ] Tests for sign-up screen
+- [ ] Tests for login screen
