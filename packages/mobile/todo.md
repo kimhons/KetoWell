@@ -183,12 +183,12 @@
 - [ ] Onboarding repository (API integration)
 - [x] Onboarding BLoC (state management - 12 events, 5 states)
 - [x] Welcome screen (splash + intro)
-- [ ] Medical screening screens (5 screens)
+- [x] Medical screening screens (5 screens) - COMPLETE
   - [x] Current medications
   - [x] SGLT2 inhibitor check
-  - [ ] Medical conditions
+  - [x] Medical conditions
   - [x] Contraindication warning
-  - [ ] Physician clearance
+  - [x] Physician clearance
 - [ ] Goal setting screens (3 screens)
   - [ ] Primary goal selection
   - [ ] Target weight/metrics
